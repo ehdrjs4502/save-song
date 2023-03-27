@@ -28,6 +28,7 @@ function Login() {
                 console.log("handleLogin =>", res);
                 window.sessionStorage.setItem("id", idRef.current.value); // 세션스토리지에 key : id , value : idRef.current.value로 저장
                 window.sessionStorage.setItem("age", res.data[0].age);
+                window.sessionStorage.setItem("name", res.data[0].name);
                 // sessionsStorage는 창 닫으면 사라짐, localStorage는 안사라짐
                 navigate("/Main");
               } else {

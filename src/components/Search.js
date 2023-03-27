@@ -1,12 +1,12 @@
 import axios from "axios";
-import React, { memo, useEffect, useState } from "react";
+import React, { useState } from "react";
 import AddBtn from './AddBtn';
 import Menu from "./Menu";
 
 function Search() {
     const [inputText, setInputText] = useState('');
     const [searchList, setSearchList] = useState([]);
-
+    console.log("검색창")
 
     function onChangeSearch(e) { // Search 인풋 태그에 변화가 생길때
         setInputText(e.target.value);
@@ -32,7 +32,6 @@ function Search() {
 
     return(
         <div>
-            <div><h2>Save Song !</h2></div>
             <div><Menu/></div>
             <div>
                 <input type="search" className="form-control rounded" placeholder="노래명 또는 가수명 입력" onKeyPress={handleOnKeyPress} onKeyUp={getMusicList} onChange={onChangeSearch}/> 

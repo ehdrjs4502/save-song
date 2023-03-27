@@ -8,7 +8,6 @@ function PopularChart() {
     useEffect(() => {
         axios.get("http://localhost:3001/getPopularChart")
         .then((res) => {
-            console.log(res.data)
             const list = res.data
             SetSongList(list)
         })
