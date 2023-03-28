@@ -1,0 +1,64 @@
+body {
+    background-color: #6981FF;
+    text-align: center;
+    display : flex;
+    justify-content: center;
+	align-items : center;
+    height: 700px;
+}
+
+.LoginBox {
+    background-color: white;
+    width: 500px;
+    height: 540px;
+    border-radius: 30px;
+}
+
+.HeaderLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    margin-bottom: 30px;
+}
+
+.MicImg {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+}
+
+.Title {
+    color: black;
+    text-align: center;
+    font-size: 40px;
+    display: inline;
+}
+
+.InputBox {
+    width: 370px;
+    height: 50px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+    margin-top: 30px;
+  }
+
+  .InputBox:focus {
+    outline: 2px solid blue;
+  }
+
+  .LoginBtn { 
+    width: 120px;
+    height: 50px;
+    background: #6981FF;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    margin-top: 30px;
+  }

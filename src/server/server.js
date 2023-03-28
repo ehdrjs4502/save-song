@@ -100,16 +100,16 @@ app.get('/getPopularChart', (req, res) => {
     const sqlQuery = "select * from popularchart;";
     db.query(sqlQuery, (err, result) => {
         res.send(result)
-    })
-})
+    });
+});
 
 app.post('/mySongList', (req, res) => {
     const id = req.body.id;
     const sqlQuery = "select * from userssong where user_id = ?;";
     db.query(sqlQuery,[id], (err, result) => {
         res.send(result)
-    })
-})
+    });
+});
 
 
 app.listen(app.get('port'), () => {

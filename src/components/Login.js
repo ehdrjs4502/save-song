@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "../css/logincss.css";
+import mic from '../img/mic.png';
 
 function Login() {
     const navigate = useNavigate();
@@ -41,15 +43,18 @@ function Login() {
     }
 
     return(
-        <div>
-            <div><h1>Save Song !</h1></div>
+        <div className="LoginBox">
+            <div className="HeaderLogo">
+                <img src={mic} className="MicImg"/>
+                <h1 className="Title">Save Song !</h1>
+            </div>
             <div>
                 <form>
-                    <div><input type="text" name="id" size="20" placeholder="ID" ref={idRef}></input></div>
-                    <div><input type="password" name="id" size="20" placeholder="PASSWORD" ref={pwRef}></input></div>
-                    <div><input type="button" value="로그인" onClick={onClickLogin}></input></div>
+                    <div><input className="InputBox" type="text" name="id" size="20" placeholder="ID" ref={idRef}></input></div>
+                    <div><input className="InputBox" type="password" name="id" size="20" placeholder="PASSWORD" ref={pwRef}></input></div>
+                    <div><input className="LoginBtn" type="button" value="로그인" onClick={onClickLogin}></input></div>
                 </form>
-                <div><Link to="/SignUp">회원가입</Link></div>
+                <div><span>아직 계정이 없으신가요?</span><Link to="/SignUp">회원가입</Link></div>
             </div>
         </div>
     )

@@ -4,8 +4,6 @@ import mic from '../img/mic.png';
 function Menu() {
     const navigate = useNavigate();
 
-    console.log("메뉴");
-
     function onClickLogOut() { //로그아웃 버튼 눌렀을 때 함수
         console.log("handleLogout");
         window.sessionStorage.clear(); // 세션 삭제

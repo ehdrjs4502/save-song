@@ -13,7 +13,7 @@ function AddBtn(props) {
             console.log("addSong => ", res);
 
             if(res.data.affectedRows === 1) { // 잘 됐으면
-                alert(name + "을 추가했습니다.");
+                alert(name + " 추가했습니다.");
             } else { // 잘 안 됐으면 ㅠㅠ
                alert("오류!!") 
             }
