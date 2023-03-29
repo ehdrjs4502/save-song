@@ -60,7 +60,7 @@ app.post('/login', function (req, res) { // 로그인 하라고 왔을 때
     const pw = req.body.pw; // 비번
 
     //아이디랑 비번이 같은 데이터가 있는지 카운트 해본당
-  const sqlQuery = "select count(*) as 'cnt', ROUND((TO_DAYS(NOW()) - (TO_DAYS(birthday))) / 365) AS age, name  from user where id =? and pw =?;";
+  const sqlQuery = "select count(*) as 'cnt', ROUND((TO_DAYS(NOW()) - (TO_DAYS(birthday))) / 365) AS age, name, gender  from user where id =? and pw =?;";
   db.query(sqlQuery, [id, pw], (err, result) => {
     res.send(result);
     // console.log(result[0]);
@@ -74,7 +74,7 @@ app.post('/login', function (req, res) { // 로그인 하라고 왔을 때
 
 app.post('/addSong', (req, res) => { // 노래 저장하라고 왔을 때
     const id = req.body.id; // 아이디
-    const name = req.body.name; // 노래명
+    const name = req.body.name; // 노래명s
     const artist = req.body.artist; // 가수명
 
     const sqlQuery = "insert into userssong(user_id, name, artist) values (?,?,?);"; // 
@@ -99,6 +99,20 @@ app.post('/delSong', (req, res) => { // 노래 저장하라고 왔을 때
 app.get('/getPopularChart', (req, res) => {
     const sqlQuery = "select * from popularchart;";
     db.query(sqlQuery, (err, result) => {
+        res.send(result)
+    });
+});
+
+app.post('/getTopSongList', (req, res) => {
+    const age = req.body.age;
+    const gender = req.body.gender;
+    console.log(age, gender);
+    const sqlQuery = `SELECT us.name, us.artist, COUNT(us.name) 
+                    FROM userssong AS us JOIN user AS u ON us.user_id = u.id 
+                    WHERE u.name IN (SELECT u2.name FROM music.user AS u2 WHERE FLOOR((YEAR(NOW())-YEAR(u2.birthday))/10)*10 = ${age} AND gender = '${gender}')
+                    GROUP BY us.name HAVING COUNT(us.name) >= 1 ORDER BY 2 DESC LIMIT 3;`;
+    db.query(sqlQuery, (err, result) => {
+        console.log(result)
         res.send(result)
     });
 });

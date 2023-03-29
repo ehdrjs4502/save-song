@@ -1,3 +1,4 @@
+import AgeGroupTop from "./AgeGroupTop";
 import Menu from "./Menu";
 import PopularChart from "./PopularChart";
 
@@ -9,6 +10,7 @@ function Main() {
             <div>
                 <PopularChart/>
             </div>
+            <div><AgeGroupTop/></div>
         </div>
     )
 }

@@ -1,0 +1,110 @@
+.SignUpBody {
+    background-color: #6981FF;
+    text-align: center;
+    display : flex;
+    justify-content: center;
+	align-items : center;
+    height: 100vh;
+}
+
+.SignUpBox {
+    background-color: white;
+    width: 520px;
+    height: 650px;
+    border-radius: 30px;
+}
+
+.HeaderLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    margin-bottom: 30px;
+}
+
+.Title {
+    color: black;
+    text-align: center;
+    font-size: 40px;
+    display: inline;
+}
+
+.InputBox {
+    width: 370px;
+    height: 45px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+    margin-top: 20px;
+  }
+
+.InputBox:focus {
+    outline: 2px solid blue;
+}
+
+.SignUpBtn { 
+    width: 120px;
+    height: 50px;
+    background: #6981FF;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.SignUpBtn:hover {
+    cursor: pointer;
+    background-color: rgb(80, 80, 254);
+}
+
+.GenderRadio {
+    margin-top: 20px;
+}
+.GenderRadio input[type=radio]{
+    display: none;
+    margin-left: 10px;
+}
+.GenderRadio input[type=radio]+label{
+    display: inline-block;
+    cursor: pointer;
+    height: 33px;
+    width: 100px;    
+    border-radius: 15px;
+    font-weight:bold;
+    font-size: 15px;
+    padding-top: 10px;
+}
+
+.GenderRadio input[type=radio]+label{
+    background-color: rgb(233, 233, 233);
+    color: #333;
+    margin-right: 10px;
+}
+.GenderRadio input[type=radio]:checked+label{
+    background-color: #6981FF;
+    color: #fff;
+}
+
+.checkIdDiv {
+    height: 10px;
+}
+
+.checkId {
+    margin-top: 15px;
+    color: red;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.GoToLogin a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 12px;
+    color: black;
+}

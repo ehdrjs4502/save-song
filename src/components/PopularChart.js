@@ -13,9 +13,6 @@ function PopularChart() {
         })
     },[])
 
-    console.log(songList)
-    
-
     return(
         <div>
             <div><h1>인기차트</h1></div>

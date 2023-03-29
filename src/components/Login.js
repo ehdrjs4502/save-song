@@ -31,6 +31,7 @@ function Login() {
                 window.sessionStorage.setItem("id", idRef.current.value); // 세션스토리지에 key : id , value : idRef.current.value로 저장
                 window.sessionStorage.setItem("age", res.data[0].age);
                 window.sessionStorage.setItem("name", res.data[0].name);
+                window.sessionStorage.setItem("gender", res.data[0].gender);
                 // sessionsStorage는 창 닫으면 사라짐, localStorage는 안사라짐
                 navigate("/Main");
               } else {
@@ -43,18 +44,20 @@ function Login() {
     }
 
     return(
-        <div className="LoginBox">
-            <div className="HeaderLogo">
-                <img src={mic} className="MicImg"/>
-                <h1 className="Title">Save Song !</h1>
-            </div>
-            <div>
-                <form>
-                    <div><input className="InputBox" type="text" name="id" size="20" placeholder="ID" ref={idRef}></input></div>
-                    <div><input className="InputBox" type="password" name="id" size="20" placeholder="PASSWORD" ref={pwRef}></input></div>
-                    <div><input className="LoginBtn" type="button" value="로그인" onClick={onClickLogin}></input></div>
-                </form>
-                <div><span>아직 계정이 없으신가요?</span><Link to="/SignUp">회원가입</Link></div>
+        <div className="LoginBody">
+            <div className="LoginBox">
+                <div className="HeaderLogo">
+                    <img src={mic} className="MicImg"/>
+                    <h1 className="Title">Save Song !</h1>
+                </div>
+                <div>
+                    <form>
+                        <div><input className="InputBox" type="text" name="id" size="20" placeholder="ID" ref={idRef}></input></div>
+                        <div><input className="InputBox" type="password" name="id" size="20" placeholder="PASSWORD" ref={pwRef}></input></div>
+                        <div><input className="LoginBtn" type="button" value="로그인" onClick={onClickLogin}></input></div>
+                    </form>
+                    <div className="SignDiv"><span>아직 계정이 없으신가요?</span><Link to="/SignUp" className="SignUpLink">회원가입</Link></div>
+                </div>
             </div>
         </div>
     )

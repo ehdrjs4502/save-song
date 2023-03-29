@@ -3,7 +3,7 @@ import Menu from "./Menu";
 import axios from "axios";
 
 function MyInfo() {
-    const id = window.sessionStorage.getItem("id");
+    const id = window.sessionStorage.getItem("id"); // 로그인한 session id
     const [myList, SetMyList] = useState([]);
     console.log("MyInfo : ", id);
 
@@ -32,7 +32,7 @@ function MyInfo() {
                     id : id,
                 }).then((res) => {
                     console.log(res);
-                    SetMyList(res.data);
+                    SetMyList(res.data); // myList에 가져온 데이터 저장
                 });
             } else { // 잘 안 됐으면 ㅠㅠ
                alert("오류!!") 
