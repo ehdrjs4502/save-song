@@ -10,12 +10,17 @@ function PopularChart() {
         .then((res) => {
             const list = res.data
             SetSongList(list)
+            console.log(list)
         })
     },[])
 
+    const truncate = (str, n) => {
+        return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+    };
+
     return(
         <div>
-            <div><h1>인기차트</h1></div>
+            <div><h2>인기차트</h2></div>
             <div>
                 <table style={{textAlign:'center'}}>
                     <tr>
@@ -26,9 +31,9 @@ function PopularChart() {
                     {songList.map((item) => {
                         return (
                             <tr>
-                                <td>{item.rank}</td>
-                                <td>{item.name}</td>
-                                <td>{item.artist}</td>
+                                <td>{item.popular_rank}</td>
+                                <td>{truncate(item.name,30)}</td>
+                                <td>{truncate(item.artist,20)}</td>
                                 <td><AddBtn name = {item.name} artist = {item.artist}/></td>
                             </tr>
                         )

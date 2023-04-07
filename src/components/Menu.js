@@ -1,8 +1,13 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import mic from '../img/mic.png';
+import "../css/menucss.css";
 
 function Menu() {
     const navigate = useNavigate();
+
+    const pathName = useLocation().pathname;
+
+    console.log(pathName);
 
     function onClickLogOut() { //로그아웃 버튼 눌렀을 때 함수
         console.log("handleLogout");
@@ -15,18 +20,22 @@ function Menu() {
     }
 
     return(
-        <div>
-            <div><h2><img src={mic} style={{width:"50px"}}/>Save Song !</h2></div>
+        <div className="menuBox">
+            <div className="headerLogo">
+                <Link to="/Main">
+                    <img src={mic} style={{width:"50px"}}/>
+                    <h2>Save Song !</h2>
+                </Link>
+            </div>
             <div>
                 <ul>
-                    <li><Link to="/Main">Top 100</Link></li>
-                    <li><Link to="/Search">노래 검색</Link></li>
-                    <li><Link to="/SearchUser">사용자 검색</Link></li>
-                    <li><Link to="/MyInfo">My Info</Link></li>
+                    <li><Link style={pathName === "/Main" ? {color : 'blue'} : {color : 'black'}} to="/Main">Top 100</Link></li>
+                    <li><Link style={pathName === "/Search" ? {color : 'blue'} : {color : 'black'}} to="/Search">노래 검색</Link></li>
+                    <li><Link style={pathName === "/SearchUser" ? {color : 'blue'} : {color : 'black'}} to="/SearchUser">사용자 검색</Link></li>
+                    <li><Link style={pathName === "/MyInfo" ? {color : 'blue'} : {color : 'black'}} to="/MyInfo">My Info</Link></li>
                 </ul>
             </div>
-            <div>{window.sessionStorage.getItem("name")}</div>
-            <div><button onClick={onClickLogOut}>로그아웃</button></div>
+            <div>{window.sessionStorage.getItem("name")} <button onClick={onClickLogOut}>로그아웃</button></div>
         </div>
     )
 }

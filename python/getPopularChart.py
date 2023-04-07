@@ -50,7 +50,18 @@ conn = pymysql.connect(host='127.0.0.1', user='root', password='1234', db='music
 
 cursor = conn.cursor()
 
-sql = "INSERT INTO `popularchart` (`rank`, `name`, `artist`) VALUES (%s, %s, %s)" #쿼리문
+renameQuery = f"ALTER TABLE popularchart RENAME TO `popularchart{now.date()}`;"
+
+cursor.execute(renameQuery)
+cursor.fetchall()
+conn.commit() # 커밋
+
+sql = "CREATE TABLE popularchart(popular_rank int(11) not null primary key, name varchar(100) not null, artist varchar(100) not null);"
+
+cursor.execute(sql)
+conn.commit() # 커밋
+
+sql = "INSERT INTO `popularchart` (`popular_rank`, `name`, `artist`) VALUES (%s, %s, %s)" #쿼리문
 
 cursor.executemany(sql, row_list) # 다중 쿼리 실행
 

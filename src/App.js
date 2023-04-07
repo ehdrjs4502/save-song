@@ -4,6 +4,7 @@ import Main from './components/Main';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MyInfo from './components/MyInfo';
 import Search from './components/Search';
+import SearchUser from './components/SearchUser';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path = '/SignUp' element = {<SignUp/>}></Route>
           <Route path='/Main' element = {<Main/>}></Route>
           <Route path='/Search' element={<Search/>}></Route>
+          <Route path='/SearchUser' element={<SearchUser/>}></Route>
           <Route path='/MyInfo' element={<MyInfo/>}></Route>
         </Routes>
       </BrowserRouter>

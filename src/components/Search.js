@@ -30,6 +30,10 @@ function Search() {
         })
     }
 
+    const truncate = (str, n) => {
+        return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+    };
+
     return(
         <div>
             <div><Menu/></div>
@@ -43,7 +47,7 @@ function Search() {
                     return (
                         <div>
                             <ul>
-                                <li key={item.index}>{item.name} / {item.artist} <AddBtn name = {item.name} artist = {item.artist}/></li>
+                                <li key={item.index}>{truncate(item.name,30)} / {truncate(item.artist,20)} <AddBtn name = {item.name} artist = {item.artist}/></li>
                             </ul>
                         </div>
                         

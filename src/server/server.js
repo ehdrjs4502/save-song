@@ -9,7 +9,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors()) //cors 오류 해결
+app.use(cors()) //cors 오류 해결, 모든 도메인에서 제한 없이 해당 서버에 요청을 보내고 응답을 받을 수 있다.
 
 app.set('port', process.env.PORT || 3001); // port : 3001로 서버 구동
 
@@ -23,6 +23,8 @@ app.post('/signUp', (req, res) => { // 회원가입 하라고 왔을 때
     const name = req.body.name;
     const gender = req.body.gender;
     const birthday = req.body.birthday;
+
+    console.log(id, pw, name, gender, birthday)
 
     const sqlQuery = "insert into user values (?,?,?,?,?);";
     db.query(sqlQuery, [id, pw, name, gender, birthday], (err, result) => {
@@ -70,7 +72,19 @@ app.post('/login', function (req, res) { // 로그인 하라고 왔을 때
     //   res.send({ message: "fail" });
     // }
   });
-})
+});
+
+app.post('/checkSong', (req, res) => {
+    const id = req.body.id; // 아이디
+    const name = req.body.name; // 노래명s
+    const artist = req.body.artist; // 가수명
+
+    const chkDupSQL = "select count(*) from userssong where user_id = ? and name = ? and artist = ?;";
+
+    db.query(chkDupSQL,[id, name, artist], (err, result) => {
+        res.send(result)
+    });
+});
 
 app.post('/addSong', (req, res) => { // 노래 저장하라고 왔을 때
     const id = req.body.id; // 아이디
@@ -96,24 +110,34 @@ app.post('/delSong', (req, res) => { // 노래 저장하라고 왔을 때
 
 });
 
+app.post('/follow', (req, res) => { // 노래 저장하라고 왔을 때
+    const fromUser = req.body.fromUser; // 팔로우 거는 사람
+    const toUser = req.body.toUser; // 팔로우 받는 사람
+
+    const sqlQuery = "insert into follow(from_user, to_user) values (?,?);"; // 
+    db.query(sqlQuery, [fromUser, toUser], (err, result) => {
+        res.send(result);
+    });
+
+});
+
+
 app.get('/getPopularChart', (req, res) => {
     const sqlQuery = "select * from popularchart;";
     db.query(sqlQuery, (err, result) => {
-        res.send(result)
+        res.send(result);
     });
 });
 
 app.post('/getTopSongList', (req, res) => {
     const age = req.body.age;
     const gender = req.body.gender;
-    console.log(age, gender);
     const sqlQuery = `SELECT us.name, us.artist, COUNT(us.name) 
                     FROM userssong AS us JOIN user AS u ON us.user_id = u.id 
                     WHERE u.name IN (SELECT u2.name FROM music.user AS u2 WHERE FLOOR((YEAR(NOW())-YEAR(u2.birthday))/10)*10 = ${age} AND gender = '${gender}')
                     GROUP BY us.name HAVING COUNT(us.name) >= 1 ORDER BY 2 DESC LIMIT 3;`;
     db.query(sqlQuery, (err, result) => {
-        console.log(result)
-        res.send(result)
+        res.send(result);
     });
 });
 
@@ -121,7 +145,15 @@ app.post('/mySongList', (req, res) => {
     const id = req.body.id;
     const sqlQuery = "select * from userssong where user_id = ?;";
     db.query(sqlQuery,[id], (err, result) => {
-        res.send(result)
+        res.send(result);
+    });
+});
+
+app.post('/searchUser', (req, res) => {
+    const id = req.body.id;
+    const sqlQuery = "select id, name from user where id LIKE ? ";
+    db.query(sqlQuery,[id + "%"], (err, result) => {
+        res.send(result);
     });
 });
 

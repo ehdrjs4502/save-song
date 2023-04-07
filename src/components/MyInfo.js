@@ -4,6 +4,7 @@ import axios from "axios";
 
 function MyInfo() {
     const id = window.sessionStorage.getItem("id"); // 로그인한 session id
+    const name = window.sessionStorage.getItem("name");
     const [myList, SetMyList] = useState([]);
     console.log("MyInfo : ", id);
 
@@ -45,8 +46,9 @@ function MyInfo() {
     return(
         <div>
             <Menu/>
+            <div><span>팔로우 : </span> / <span>팔로잉 : </span></div>
             <div>
-                <h2>나의 노래 목록</h2>
+                <h2>{name}님의 노래 목록</h2>
             </div>
             <div>
                 {myList.length == 0 ? (<div><h3>노래를 추가해주세요~</h3></div>) : 

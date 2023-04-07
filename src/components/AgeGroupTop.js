@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import AddBtn from "./AddBtn";
 
 function AgeGroupTop() {
     const [topList, SetTopList] = useState([]);
@@ -31,11 +32,12 @@ function AgeGroupTop() {
                             <tr>
                                 <td>{item.name}</td>
                                 <td>{item.artist}</td>
+                                <td><AddBtn name = {item.name} artist = {item.artist}/></td>
                             </tr>
                         )
                     })}
                 </table>
-            </div>    
+            </div>
         </div>
     )
 }
