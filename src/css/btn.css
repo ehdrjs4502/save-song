@@ -1,0 +1,33 @@
+.btn {
+    background-color: #0075FF;
+    color: #fff;
+    border:none; 
+    border-radius:10px; 
+    min-height: 30px;
+    min-width: 50px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.btn:hover {
+    cursor: pointer;
+    font-size: 20px;
+    background-color: #0044ff;
+}
+
+.smallBtn {
+    background-color: #0075FF;
+    color: #fff;
+    border:none; 
+    border-radius:10px; 
+    min-height: 25px;
+    min-width: 40px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.smallBtn:hover {
+    cursor: pointer;
+    font-size: 18px;
+    background-color: #0044ff;
+}

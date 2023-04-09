@@ -135,7 +135,7 @@ app.post('/getTopSongList', (req, res) => {
     const sqlQuery = `SELECT us.name, us.artist, COUNT(us.name) 
                     FROM userssong AS us JOIN user AS u ON us.user_id = u.id 
                     WHERE u.name IN (SELECT u2.name FROM music.user AS u2 WHERE FLOOR((YEAR(NOW())-YEAR(u2.birthday))/10)*10 = ${age} AND gender = '${gender}')
-                    GROUP BY us.name HAVING COUNT(us.name) >= 1 ORDER BY 2 DESC LIMIT 3;`;
+                    GROUP BY us.name HAVING COUNT(us.name) >= 1 ORDER BY 3 DESC LIMIT 3;`;
     db.query(sqlQuery, (err, result) => {
         res.send(result);
     });

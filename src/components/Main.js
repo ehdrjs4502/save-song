@@ -9,8 +9,9 @@ function Main() {
             <div><Menu/></div>
             <div>
                 <PopularChart/>
+                <AgeGroupTop/>
             </div>
-            <div><AgeGroupTop/></div>
+            <div></div>
         </div>
     )
 }

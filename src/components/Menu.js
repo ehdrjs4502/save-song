@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import mic from '../img/mic.png';
-import "../css/menucss.css";
+import "../css/menu.css";
 
 function Menu() {
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ function Menu() {
     }
 
     return(
-        <div className="menuBox">
+        <div className="menuBox" style={{borderBottom:'1px solid black'}}>
             <div className="headerLogo">
                 <Link to="/Main">
                     <img src={mic} style={{width:"50px"}}/>

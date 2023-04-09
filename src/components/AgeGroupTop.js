@@ -15,24 +15,31 @@ function AgeGroupTop() {
             const list = res.data;
             console.log(res.data);
             SetTopList(list);
-        })
-    },[])
+        });
+    },[]);
+
+    const truncate = (str, n) => {
+        return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+    };
 
     return (
-        <div>
+        <div style={{fontSize:'12px', float:'right', marginTop:'200px', marginRight:'20px'}}>
             <div><h2>{ageGroup}대 {gender}성 Top 3</h2></div>
             <div>
-                <table style={{textAlign:'center'}}>
+                <table className="" style={{textAlign:'center'}}>
                     <tr>
+                        <th>순위</th>
                         <th>곡제목</th>
                         <th>가수명</th>
+                        <th></th>
                     </tr>
-                    {topList.map((item) => {
+                    {topList.map((item, index) => {
                         return (
                             <tr>
-                                <td>{item.name}</td>
-                                <td>{item.artist}</td>
-                                <td><AddBtn name = {item.name} artist = {item.artist}/></td>
+                                <td>{index + 1}</td>
+                                <td>{truncate(item.name,10)}</td>
+                                <td>{truncate(item.artist,10)}</td>
+                                <td><AddBtn size = 'small'  name = {item.name} artist = {item.artist}/></td>
                             </tr>
                         )
                     })}

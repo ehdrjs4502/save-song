@@ -1,6 +1,7 @@
 import Menu from "./Menu";
 import axios from "axios";
 import React, { useState } from "react";
+import FollowBtn from "./FollowBtn";
 
 function SearchUser() {
     const [inputText, setInputText] = useState('');
@@ -34,22 +35,6 @@ function SearchUser() {
         })
     };
 
-    function onClickFollowBtn(toId) {
-        axios.post("http://localhost:3001/follow", {
-            fromUser : id,
-            toUser : toId,
-        }).then((res) => {
-            console.log("follow => ", res);
-
-            if(res.data.affectedRows === 1) { // 잘 됐으면
-                alert(toId + " 추가했습니다.");
-            } else { // 잘 안 됐으면 ㅠㅠ
-               alert("오류!!") 
-            }
-        })
-    }
-
-
     return(
         <div>
             <div><Menu/></div>
@@ -63,10 +48,9 @@ function SearchUser() {
                     return (
                         <div>
                             <ul>
-                                <li>{item.id} / {item.name} <button onClick={() => onClickFollowBtn(item.id)}>{follow}</button></li>
+                                <li>{item.id} / {item.name} <FollowBtn toId = {item.id} fromId = {id}/></li>
                             </ul>
                         </div>
-                        
                     )
                 })}
             </div>
