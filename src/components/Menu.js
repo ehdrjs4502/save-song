@@ -4,10 +4,8 @@ import "../css/menu.css";
 
 function Menu() {
     const navigate = useNavigate();
-
+    const userName = window.sessionStorage.getItem("name")
     const pathName = useLocation().pathname;
-
-    console.log(pathName);
 
     function onClickLogOut() { //로그아웃 버튼 눌렀을 때 함수
         console.log("handleLogout");
@@ -35,7 +33,7 @@ function Menu() {
                     <li><Link style={pathName === "/MyInfo" ? {color : 'blue'} : {color : 'black'}} to="/MyInfo">My Info</Link></li>
                 </ul>
             </div>
-            <div>{window.sessionStorage.getItem("name")} <button onClick={onClickLogOut}>로그아웃</button></div>
+            <div><span className="userName">{userName}</span> <button className="logoutBtn" onClick={onClickLogOut}>로그아웃</button></div>
         </div>
     )
 }

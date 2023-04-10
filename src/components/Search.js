@@ -2,21 +2,22 @@ import axios from "axios";
 import React, { useState } from "react";
 import AddBtn from './AddBtn';
 import Menu from "./Menu";
+import '../css/search.css';
+import search from '../img/search.png';
 
 function Search() {
     const [inputText, setInputText] = useState('');
     const [searchList, setSearchList] = useState([]);
-    console.log("검색창")
 
     function onChangeSearch(e) { // Search 인풋 태그에 변화가 생길때
         setInputText(e.target.value);
-    }
+    };
 
     const handleOnKeyPress = e => { // input search에서 클릭 했을 때에 함수
         if (e.key === 'Enter') {
-          getMusicList(); // Enter 입력이 되면 클릭 이벤트 실행
-        }
-      };
+            getMusicList(); // Enter 입력이 되면 클릭 이벤트 실행
+        };
+    };
 
     async function getMusicList() { // 노래 가져오는 함수
         // API_URL 설정
@@ -27,8 +28,8 @@ function Search() {
             const trackList = res.data.results.trackmatches.track; // api에서 가져온 노래 리스트 객체 저장
             console.log(trackList);
             setSearchList(trackList); // searchList에 저장
-        })
-    }
+        });
+    };
 
     const truncate = (str, n) => {
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
@@ -37,23 +38,36 @@ function Search() {
     return(
         <div>
             <div><Menu/></div>
-            <div>
-                <input type="search" className="form-control rounded" placeholder="노래명 또는 가수명 입력" onKeyPress={handleOnKeyPress} onKeyUp={getMusicList} onChange={onChangeSearch}/> 
-                <button type="button" id="search_btn" onClick={getMusicList}>검색</button>
+            <div className="searchBox">
+                <div className="searchForm">
+                    <input type="search" className="searchInput" placeholder="노래명 또는 가수명 입력" onKeyPress={handleOnKeyPress} onChange={onChangeSearch}/> 
+                    <button type="button" className="searchBtn" onClick={getMusicList}><img className="searchImg" alt="searchImg" src={search}/></button>
+                </div>
             </div>
 
-            <div>
-                {searchList.map((item) => {
-                    return (
-                        <div>
-                            <ul>
-                                <li key={item.index}>{truncate(item.name,30)} / {truncate(item.artist,20)} <AddBtn name = {item.name} artist = {item.artist}/></li>
-                            </ul>
-                        </div>
-                        
-                    )
-                })}
-            </div>
+            {searchList.length == 0 ? '' : 
+                <div className="listBox">
+                    <div>
+                        <table className="searchTable">
+                            <tr>
+                                <th  style={{width:'70%'}}>곡제목</th>
+                                <th  style={{width:'30%'}}>가수명</th>
+                                <th></th>
+                            </tr>
+                        {searchList.map((item) => {
+                            return (         
+                                <tr>
+                                    <td>{truncate(item.name,30)}</td>
+                                    <td>{truncate(item.artist,20)} </td>
+                                    <td><AddBtn name = {item.name} artist = {item.artist}/></td>
+                                </tr>
+                            )
+                        })}
+                        </table>
+                    </div>
+                </div>
+            }
+            
         </div>
     )
 }

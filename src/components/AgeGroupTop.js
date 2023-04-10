@@ -23,7 +23,7 @@ function AgeGroupTop() {
     };
 
     return (
-        <div style={{fontSize:'12px', float:'right', marginTop:'200px', marginRight:'20px'}}>
+        <div style={{fontSize:'12px', marginTop:'15%'}}>
             <div><h2>{ageGroup}대 {gender}성 Top 3</h2></div>
             <div>
                 <table className="" style={{textAlign:'center'}}>

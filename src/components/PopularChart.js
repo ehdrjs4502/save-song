@@ -20,7 +20,7 @@ function PopularChart() {
     };
 
     return(
-        <div style={{float:'left', marginLeft:'200px'}}>
+        <div style={{}}>
             <div><h2>인기차트</h2></div>
             <div>
                 <table className="popularTable" style={{textAlign:'center'}}>

@@ -42,3 +42,26 @@
 .menuBox ul li a:hover {
     color: blue;
 }
+
+.userName {
+    font-weight: bold;
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.logoutBtn {
+    background-color: #3d7eff;
+    color: #fff;
+    border:none; 
+    border-radius:10px; 
+    min-height: 30px;
+    min-width: 50px;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 10px;
+}
+
+.logoutBtn:hover {
+    cursor: pointer;
+    background-color: #0055ff;
+}
