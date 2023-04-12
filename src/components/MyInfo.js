@@ -3,13 +3,13 @@ import Menu from "./Menu";
 import axios from "axios";
 
 function MyInfo() {
-    const id = window.sessionStorage.getItem("id"); // 로그인한 session id
-    const name = window.sessionStorage.getItem("name");
+    const id = JSON.parse(sessionStorage.getItem("userInfo")).id; // 로그인한 session id
+    const name = JSON.parse(sessionStorage.getItem("userInfo")).name;
     const [myList, SetMyList] = useState([]);
     console.log("MyInfo : ", id);
 
     useEffect(() => { // 처음 페이지 로드 될 때 사용자의 음악 가져오기
-        axios.post("http://localhost:3001/mySongList", {
+        axios.post("http://localhost:3001/songList", {
             id : id,
         }).then((res) => {
             console.log(res);
@@ -21,7 +21,7 @@ function MyInfo() {
         console.log(name, artist);
 
         axios.post("http://localhost:3001/delSong", { // addSong 서버 api 호출
-            id : window.sessionStorage.id, // 현재 세션에 있는 id (로그인한 id)
+            id : id, // 현재 세션에 있는 id (로그인한 id)
             name : name, // 노래명
             artist : artist, // 가수명
         }).then((res) => { // 서버에서 res 가져옴
@@ -29,7 +29,7 @@ function MyInfo() {
 
             if(res.data.affectedRows === 1) { // 잘 됐으면
                 alert(name + " 제거했습니다.");
-                axios.post("http://localhost:3001/mySongList", { // db에 사용자가 저장한 음악 다시 가져오자
+                axios.post("http://localhost:3001/songList", { // db에 사용자가 저장한 음악 다시 가져오자
                     id : id,
                 }).then((res) => {
                     console.log(res);

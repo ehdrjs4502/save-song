@@ -9,6 +9,12 @@ function Login() {
     const idRef = useRef();
     const pwRef = useRef();
 
+    const handleOnKeyPress = e => { // input search에서 클릭 했을 때에 함수
+        if (e.key === 'Enter') {
+            onClickLogin(); // Enter 입력이 되면 클릭 이벤트 실행
+        };
+    };
+
     function onClickLogin() {
         if (idRef.current.value === "" || idRef.current.value === undefined) {
             alert("ID를 입력하세요");
@@ -28,10 +34,9 @@ function Login() {
         }).then((res) => {
             if (res.data[0].cnt === 1) {
                 console.log("handleLogin =>", res);
-                window.sessionStorage.setItem("id", idRef.current.value); // 세션스토리지에 key : id , value : idRef.current.value로 저장
-                window.sessionStorage.setItem("age", res.data[0].age);
-                window.sessionStorage.setItem("name", res.data[0].name);
-                window.sessionStorage.setItem("gender", res.data[0].gender);
+                console.log(res.data[0]);
+                delete res.data[0].cnt;
+                window.sessionStorage.setItem("userInfo", JSON.stringify(res.data[0])); // 세션스토리지에 유저 정보 저장
                 // sessionsStorage는 창 닫으면 사라짐, localStorage는 안사라짐
                 navigate("/Main");
               } else {
@@ -53,7 +58,7 @@ function Login() {
                 <div>
                     <form>
                         <div><input className="InputBox" type="text" name="id" size="20" placeholder="ID" ref={idRef}></input></div>
-                        <div><input className="InputBox" type="password" name="id" size="20" placeholder="PASSWORD" ref={pwRef}></input></div>
+                        <div><input className="InputBox" type="password" name="id" size="20" placeholder="PASSWORD" ref={pwRef} onKeyPress={handleOnKeyPress}></input></div>
                         <div><input className="LoginBtn" type="button" value="로그인" onClick={onClickLogin}></input></div>
                     </form>
                     <div className="SignDiv"><span>아직 계정이 없으신가요?</span><Link to="/SignUp" className="SignUpLink">회원가입</Link></div>

@@ -2,15 +2,15 @@ import Menu from "./Menu";
 import axios from "axios";
 import React, { useState } from "react";
 import FollowBtn from "./FollowBtn";
+import { Link } from "react-router-dom";
 
 function SearchUser() {
     const [inputText, setInputText] = useState('');
     const [searchList, setSearchList] = useState([]);
     const [follow, setFollow] = useState("팔로우");
-    const id = window.sessionStorage.getItem("id");
+    const id = JSON.parse(sessionStorage.getItem("userInfo")).id;
     console.log(id);
     
-
     function onChangeSearch(e) { // Search 인풋 태그에 변화가 생길때
         setInputText(e.target.value);
     };
@@ -48,7 +48,7 @@ function SearchUser() {
                     return (
                         <div>
                             <ul>
-                                <li>{item.id} / {item.name} <FollowBtn toId = {item.id} fromId = {id}/></li>
+                                <li><Link to={`/UserInfo/${item.id}`}>{item.id} / {item.name} </Link><FollowBtn toId = {item.id} fromId = {id}/></li>
                             </ul>
                         </div>
                     )

@@ -1,11 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import AddBtn from "./AddBtn";
+import { type } from "@testing-library/user-event/dist/type";
 
-function AgeGroupTop() {
+function AgeGroupTop(props) {
     const [topList, SetTopList] = useState([]);
-    const ageGroup = window.sessionStorage.age.replace(/.$/, '0');
-    const gender = window.sessionStorage.gender;
+    //.replace(/.$/, '0');
+    const ageGroup = props.userAge.toString().replace(/.$/, '0');
+    const gender = props.userGender;
+
+    console.log(gender);
 
     useEffect(() => {
         axios.post("http://localhost:3001/getTopSongList", {

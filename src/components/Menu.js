@@ -2,10 +2,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import mic from '../img/mic.png';
 import "../css/menu.css";
 
-function Menu() {
+function Menu(props) {
     const navigate = useNavigate();
-    const userName = window.sessionStorage.getItem("name")
     const pathName = useLocation().pathname;
+    const userName = JSON.parse(sessionStorage.getItem("userInfo")).name;
 
     function onClickLogOut() { //로그아웃 버튼 눌렀을 때 함수
         console.log("handleLogout");

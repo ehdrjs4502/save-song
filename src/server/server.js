@@ -62,15 +62,10 @@ app.post('/login', function (req, res) { // 로그인 하라고 왔을 때
     const pw = req.body.pw; // 비번
 
     //아이디랑 비번이 같은 데이터가 있는지 카운트 해본당
-  const sqlQuery = "select count(*) as 'cnt', ROUND((TO_DAYS(NOW()) - (TO_DAYS(birthday))) / 365) AS age, name, gender  from user where id =? and pw =?;";
+  const sqlQuery = "select count(*) as 'cnt', ROUND((TO_DAYS(NOW()) - (TO_DAYS(birthday))) / 365) AS age, id, name, gender  from user where id =? and pw =?;";
   db.query(sqlQuery, [id, pw], (err, result) => {
     res.send(result);
-    // console.log(result[0]);
-    // if (result[0].cnt === 1) {
-    //   res.send({ message: "success" });
-    // } else {
-    //   res.send({ message: "fail" });
-    // }
+
   });
 });
 
@@ -141,7 +136,7 @@ app.post('/getTopSongList', (req, res) => {
     });
 });
 
-app.post('/mySongList', (req, res) => {
+app.post('/songList', (req, res) => {
     const id = req.body.id;
     const sqlQuery = "select * from userssong where user_id = ?;";
     db.query(sqlQuery,[id], (err, result) => {
