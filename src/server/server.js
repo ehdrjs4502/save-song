@@ -39,7 +39,6 @@ app.post('/checkId', function (req, res) {  // 아이디 체크 하라고 왔을
     console.log(req.body.id);
     const sql = 'select id from user where id=?' //sql 쿼리문-> id 에맞는 row 들고온다
     db.query(sql, [user_id], function (err, rows, fields) {
-        console.log("중복 체크할 id : ",rows);
         let checkid = new Object();
         checkid.tf =false;              // 이 아이디를 사용가능 한가요??
   
@@ -129,9 +128,9 @@ app.post('/getTopSongList', (req, res) => {
     const gender = req.body.gender;
     const sqlQuery = `SELECT us.name, us.artist, COUNT(us.name) 
                     FROM userssong AS us JOIN user AS u ON us.user_id = u.id 
-                    WHERE u.name IN (SELECT u2.name FROM music.user AS u2 WHERE FLOOR((YEAR(NOW())-YEAR(u2.birthday))/10)*10 = ${age} AND gender = '${gender}')
+                    WHERE u.name IN (SELECT u2.name FROM music.user AS u2 WHERE FLOOR((YEAR(NOW())-YEAR(u2.birthday))/10)*10 = ? AND gender = ?)
                     GROUP BY us.name HAVING COUNT(us.name) >= 1 ORDER BY 3 DESC LIMIT 3;`;
-    db.query(sqlQuery, (err, result) => {
+    db.query(sqlQuery, [age, gender], (err, result) => {
         res.send(result);
     });
 });
@@ -152,6 +151,21 @@ app.post('/searchUser', (req, res) => {
     });
 });
 
+app.post('/followList', (req, res) => {
+    const id = req.body.id;
+    const sqlQuery = "select to_user, (select name from user where id = to_user) as name from follow where from_user = ?;";
+    db.query(sqlQuery,[id], (err, result) => {
+        res.send(result);
+    });
+});
+
+app.post('/followerList', (req, res) => {
+    const id = req.body.id;
+    const sqlQuery = "select from_user, (select name from user where id = from_user) as name from follow where to_user = ?;";
+    db.query(sqlQuery,[id], (err, result) => {
+        res.send(result);
+    });
+});
 
 app.listen(app.get('port'), () => {
     console.log('Express server listening on port ' + app.get('port'));

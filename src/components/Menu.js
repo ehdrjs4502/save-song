@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import mic from '../img/mic.png';
 import "../css/menu.css";
 
-function Menu(props) {
+function Menu() {
     const navigate = useNavigate();
     const pathName = useLocation().pathname;
     const userName = JSON.parse(sessionStorage.getItem("userInfo")).name;

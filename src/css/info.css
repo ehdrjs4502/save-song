@@ -1,0 +1,55 @@
+.infoBox {
+    display: flex;
+    justify-content: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.header :nth-child(n+2):hover {
+    cursor: pointer;
+}
+
+.songTable {
+    margin-top: 30px;
+    border-collapse: collapse;
+  }
+
+.songTable th {
+    border-bottom: 1.5px solid rgb(0, 0, 0);
+    padding: 10px 30px 10px 30px;  
+}
+
+.songTable td {
+    border-bottom: 1px solid rgba(46, 46, 46, 0.366);
+    padding: 10px 30px 10px 30px;
+}
+
+.songListTitle {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+.delSongBtn {
+    background-color: #ff0000;
+    color: #fff;
+    border:none; 
+    border-radius:10px; 
+    min-height: 30px;
+    min-width: 50px;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.delSongBtn:hover {
+    cursor: pointer;
+    font-size: 15px;
+    background-color: #d30000;
+}

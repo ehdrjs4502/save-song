@@ -3,6 +3,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import FollowBtn from "./FollowBtn";
 import { Link } from "react-router-dom";
+import '../css/search.css';
+import search from '../img/search.png';
 
 function SearchUser() {
     const [inputText, setInputText] = useState('');
@@ -38,9 +40,11 @@ function SearchUser() {
     return(
         <div>
             <div><Menu/></div>
-            <div>
-                <input type="search" className="form-control rounded" placeholder="유저 아이디 입력" onKeyPress={handleOnKeyPress} onKeyUp={getUserList} onChange={onChangeSearch}/> 
-                <button type="button" id="search_btn" onClick={getUserList}>검색</button>
+            <div className="searchBox">
+                <div className="searchForm">
+                    <input type="search" className="searchInput" placeholder="유저 아이디 입력" onKeyPress={handleOnKeyPress} onKeyUp={getUserList} onChange={onChangeSearch}/> 
+                    <button type="button" className="searchBtn" onClick={getUserList}><img className="searchImg" alt="searchImg" src={search}/></button>
+                </div>
             </div>
 
             <div>

@@ -1,0 +1,27 @@
+.headerTitle {
+    text-align: center;
+    font-size: 15px;
+    
+}
+
+.followTable {
+    width: 100%;
+}
+
+
+.followTable td {
+    padding: 10px;
+}
+
+.followTable td a {
+    text-decoration: none;
+    color: black;
+}
+
+.delBtn {
+    float: right;
+}
+
+.userID {
+    font-weight: bold;
+}

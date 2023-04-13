@@ -1,21 +1,71 @@
 import { useEffect, useState } from "react";
 import Menu from "./Menu";
 import axios from "axios";
+import Modal from 'react-modal';
+import Followings from "./Followings";
+import Followers from "./Followers";
+import "../css/info.css";
 
 function MyInfo() {
+    const modalStyle = { // 모달 창 스타일
+        overlay: {
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.7)",
+            zIndex: 10,
+        },
+        content: {
+            // display: "flex",
+            // justifyContent: "center",
+            background: "rgb(255, 255, 255)",
+            overflow: "auto",
+            top: "15vh",
+            left: "38vw",
+            right: "38vw",
+            bottom: "30vh",
+            WebkitOverflowScrolling: "touch",
+            borderRadius: "10px",
+            outline: "none",
+            zIndex: 10,
+        },
+    };
+
     const id = JSON.parse(sessionStorage.getItem("userInfo")).id; // 로그인한 session id
     const name = JSON.parse(sessionStorage.getItem("userInfo")).name;
     const [myList, SetMyList] = useState([]);
+    const [followList, setFollowList] = useState([]); // 팔로우
+    const [followIsOpen, setFollowIsOpen] = useState(false); // 팔로우 눌렀을 때 모달 창 상태
+    const [followerList, setFollowerList] = useState([]); // 팔로워
+    const [followerIsOpen, setFollowerIsOpen]= useState(false); // 팔로워 눌렀을 때 모달 창 상태
     console.log("MyInfo : ", id);
 
-    useEffect(() => { // 처음 페이지 로드 될 때 사용자의 음악 가져오기
-        axios.post("http://localhost:3001/songList", {
+    useEffect(() => {
+        axios.post("http://localhost:3001/songList", {  // 처음 페이지 로드 될 때 사용자의 음악 가져오기
             id : id,
         }).then((res) => {
             console.log(res);
             SetMyList(res.data);
         });
+
+        axios.post("http://localhost:3001/followList", { // 팔로우 리스트 가져오기
+            id : id,
+        }).then((res) => {
+            setFollowList(res.data);
+        });
+
+        axios.post("http://localhost:3001/followerList", { // 팔로우 리스트 가져오기
+            id : id,
+        }).then((res) => {
+            setFollowerList(res.data);
+        });
+
     }, []);
+
+    console.log("팔로우 : ", followList);
+    console.log("팔로워 : ", followerList);
 
     function onClickDelBtn(name, artist) { // 삭제 버튼을 눌렀을 때
         console.log(name, artist);
@@ -46,32 +96,47 @@ function MyInfo() {
     return(
         <div>
             <Menu/>
-            <div><span>팔로우 : </span> / <span>팔로잉 : </span></div>
-            <div>
-                <h2>{name}님의 노래 목록</h2>
-            </div>
-            <div>
-                {myList.length == 0 ? (<div><h3>노래를 추가해주세요~</h3></div>) : 
-                (<div>
-                    <table style={{textAlign:'center'}}>
-                        <tr>
-                            <th>번호</th>
-                            <th>곡제목</th>
-                            <th>가수명</th>
-                        </tr>
-                        {myList.map((item, idx) => {
-                            return (
+            <div className="infoBox">
+                <div>
+                    <div className="header">
+                        <span>{name}</span>
+                        <span onClick={() => setFollowerIsOpen(true)}>팔로워 : {followerList.length}</span> 
+                        <span onClick={() => setFollowIsOpen(true)}>팔로우 :  {followList.length}</span>
+                        </div>
+                    <div>
+                        <h2 className="songListTitle">{name}님의 노래 목록</h2>
+                    </div>
+                    <div>
+                        {myList.length === 0 ? (<div><h3>노래를 추가해주세요~</h3></div>) : 
+                        (<div>
+                            <table className="songTable" style={{textAlign:'center'}}>
                                 <tr>
-                                    <td>{idx + 1}</td>
-                                    <td>{item.name}</td>
-                                    <td>{item.artist}</td>
-                                    <td><button onClick={() => onClickDelBtn(item.name, item.artist)}>제거</button></td>
+                                    <th>번호</th>
+                                    <th>곡제목</th>
+                                    <th>가수명</th>
+                                    <th></th>
                                 </tr>
-                            )
-                        })}
-                    </table>
-                </div>)}
+                                {myList.map((item, idx) => {
+                                    return (
+                                        <tr>
+                                            <td>{idx + 1}</td>
+                                            <td>{item.name}</td>
+                                            <td>{item.artist}</td>
+                                            <td><button className="delSongBtn" onClick={() => onClickDelBtn(item.name, item.artist)}>X</button></td>
+                                        </tr>
+                                    )
+                                })}
+                            </table>
+                        </div>)}
+                    </div>
+                </div>
             </div>
+            <Modal style={modalStyle} isOpen={followIsOpen} onRequestClose={() => setFollowIsOpen(false)}>
+                <Followings followList = {followList}/>
+            </Modal>
+            <Modal style={modalStyle} isOpen={followerIsOpen} onRequestClose={() => setFollowerIsOpen(false)}>
+                <Followers followerList = {followerList}/>
+            </Modal>
         </div>
     )
 }
