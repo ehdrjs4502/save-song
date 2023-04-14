@@ -22,7 +22,7 @@ function Followers(props) {
                                     <td className="userID" key={idx}>
                                         <Link to={`/UserInfo/${item.from_user}`}>
                                             {item.from_user}
-                                            <br></br>
+                                            <br/>
                                             {item.name}
                                         </Link>
                                     </td>

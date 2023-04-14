@@ -4,7 +4,7 @@ import '../css/btn.css'
 
 function AddBtn(props) {
     function addSong(name, artist) {
-        axios.post("http://localhost:3001/addSong", { // addSong 서버 api 호출
+        axios.post("http://localhost:3001/song/addSong", { // addSong 서버 api 호출
             id : JSON.parse(sessionStorage.getItem("userInfo")).id, // 현재 세션에 있는 id (로그인한 id)
             name : name, // 노래명
             artist : artist, // 가수명
@@ -19,7 +19,7 @@ function AddBtn(props) {
     };
 
     function onClickAddBtn(name, artist) { // 추가 버튼을 눌렀을 때
-        axios.post("http://localhost:3001/checkSong", { // 중복 체크
+        axios.post("http://localhost:3001/song/checkSong", { // 중복 체크
             id : JSON.parse(sessionStorage.getItem("userInfo")).id, // 현재 세션에 있는 id (로그인한 id)
             name : name, // 노래명
             artist : artist, // 가수명

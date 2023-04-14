@@ -12,7 +12,7 @@ function AgeGroupTop(props) {
     console.log(gender);
 
     useEffect(() => {
-        axios.post("http://localhost:3001/getTopSongList", {
+        axios.post("http://localhost:3001/song/getTopSongList", {
             age : ageGroup, 
             gender : gender,
         }).then((res) => {

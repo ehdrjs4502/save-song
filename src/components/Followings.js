@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import '../css/followModal.css'
+import FollowBtn from "./FollowBtn";
 
 function Followings(props) {
     const [followList, setFollowList] = useState(props.followList);
-
+    const id = props.fromId;
     console.log(followList);
     
     return(
@@ -25,6 +26,9 @@ function Followings(props) {
                                             <br/>
                                             {item.name}
                                         </Link>
+                                    </td>
+                                    <td>
+                                        <FollowBtn toId = {item.to_user} fromId = {id}></FollowBtn>
                                     </td>
                                 </tr>
                             )

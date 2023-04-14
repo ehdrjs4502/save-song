@@ -21,7 +21,7 @@ function SignUp() {
         //     return false;
         // }
 
-        axios.post("http://localhost:3001/checkId", {
+        axios.post("http://localhost:3001/signUp/checkId", {
             id : idRef.current.value,
         }).then((res) => {
             console.log("checkId =>", res.data.tf);

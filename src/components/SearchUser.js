@@ -9,9 +9,7 @@ import search from '../img/search.png';
 function SearchUser() {
     const [inputText, setInputText] = useState('');
     const [searchList, setSearchList] = useState([]);
-    const [follow, setFollow] = useState("팔로우");
     const id = JSON.parse(sessionStorage.getItem("userInfo")).id;
-    console.log(id);
     
     function onChangeSearch(e) { // Search 인풋 태그에 변화가 생길때
         setInputText(e.target.value);
@@ -29,7 +27,7 @@ function SearchUser() {
             setSearchList(searchList => []);
             return;
         }
-        await axios.post("http://localhost:3001/searchUser", {
+        await axios.post("http://localhost:3001/search/searchUser", {
             id : inputText,
         }).then((res) => {
             setSearchList(searchList => []); // searchList를 비워준다.
@@ -39,7 +37,9 @@ function SearchUser() {
 
     return(
         <div>
-            <div><Menu/></div>
+            <div>
+                <Menu/>
+            </div>
             <div className="searchBox">
                 <div className="searchForm">
                     <input type="search" className="searchInput" placeholder="유저 아이디 입력" onKeyPress={handleOnKeyPress} onKeyUp={getUserList} onChange={onChangeSearch}/> 

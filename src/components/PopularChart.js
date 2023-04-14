@@ -7,7 +7,7 @@ function PopularChart() {
     const [songList, SetSongList] = useState([])
 
     useEffect(() => {
-        axios.get("http://localhost:3001/getPopularChart")
+        axios.get("http://localhost:3001/song/getPopularChart")
         .then((res) => {
             const list = res.data
             SetSongList(list)
