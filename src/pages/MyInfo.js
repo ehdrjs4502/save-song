@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import Menu from "./Menu";
+import Menu from "../components/Menu";
 import axios from "axios";
 import Modal from 'react-modal';
-import Followings from "./Followings";
-import Followers from "./Followers";
+import Followings from "../components/Followings";
+import Followers from "../components/Followers";
 import "../css/info.css";
-import SongList from "./SongList";
+import SongList from "../components/SongList";
 
 function MyInfo() {
     const modalStyle = { // 모달 창 스타일
@@ -40,21 +40,27 @@ function MyInfo() {
     const [followIsOpen, setFollowIsOpen] = useState(false); // 팔로우 눌렀을 때 모달 창 상태
     const [followerList, setFollowerList] = useState([]); // 팔로워
     const [followerIsOpen, setFollowerIsOpen]= useState(false); // 팔로워 눌렀을 때 모달 창 상태
-    console.log("MyInfo : ", id);
 
-    useEffect(() => {
+    const getFollowList = () => {
         axios.post("http://localhost:3001/follow/followList", { // 팔로우 리스트 가져오기
             id : id,
         }).then((res) => {
             setFollowList(res.data);
         });
+    }
 
+    const getFollowerList = () => {
         axios.post("http://localhost:3001/follow/followerList", { // 팔로우 리스트 가져오기
             id : id,
         }).then((res) => {
             setFollowerList(res.data);
         });
+    }
 
+
+    useEffect(() => {
+        getFollowList();
+        getFollowerList();
     }, []);
 
     return(

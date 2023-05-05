@@ -1,35 +1,33 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import React from 'react';
+import '../css/followBtn.css';
 
 function FollowBtn(props) {
     const [isFollowing, setIsFollowing] = useState(false);
     const toId = props.toId; // 팔로우할 아이디
     const fromId = props.fromId; // 내 아이디
 
-    console.log(toId, fromId);
-
-    function chkFollow() {
-        axios.post("http://localhost:3001/follow/isFollow", {
-            fromUser : fromId,
-            toUser : toId,
-        }).then((res) => {
-            console.log(res.data);
-            if(res.data.length === 0) {
-                setIsFollowing(false);
-            } else {
-                setIsFollowing(true);
-            }
-        }).catch((err) => {
-            console.error(err);
-        });
-    }
     
     useEffect(() => {
+        function chkFollow() {
+            axios.post("http://localhost:3001/follow/isFollow", {
+                fromUser : fromId,
+                toUser : toId,
+            }).then((res) => {
+                if(res.data.length === 0) {
+                    setIsFollowing(false);
+                } else {
+                    setIsFollowing(true);
+                }
+            }).catch((err) => {
+                console.error(err);
+            });
+        }
+
         chkFollow();
     }, [toId, fromId]);
 
-    console.log(isFollowing);
 
     function onClickFollowBtn() {
         if(isFollowing) { // 팔로우 돼있으면 언팔로우
@@ -38,7 +36,7 @@ function FollowBtn(props) {
                 toUser : toId,
             }).then((res) => { // 서버에서 res 가져옴
                 if(res.data.affectedRows === 1) { // 잘 됐으면
-                    chkFollow();
+                    setIsFollowing(false);
                 } else { // 잘 안 됐으면 ㅠㅠ
                 alert("오류!!") 
                 };
@@ -52,7 +50,7 @@ function FollowBtn(props) {
                 console.log("follow => ", res);
     
                 if(res.data.affectedRows === 1) { // 잘 됐으면
-                    chkFollow();
+                    setIsFollowing(true);
                 } else { // 잘 안 됐으면 ㅠㅠ
                    alert("오류!!") 
                 }
@@ -61,7 +59,7 @@ function FollowBtn(props) {
     }
 
     return(
-        <button onClick={() => onClickFollowBtn(toId)}>{isFollowing ? "언팔로우" : "팔로우"}</button>
+        <button className={isFollowing ? "unfollowBtn" : "followBtn"} onClick={() => onClickFollowBtn(toId)}>{isFollowing ? "언팔로우" : "팔로우"}</button>
     )
 };
 

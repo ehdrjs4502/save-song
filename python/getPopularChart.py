@@ -30,18 +30,14 @@ row_list = []
 
 for tr in trs:
     tds = tr.find_elements(By.TAG_NAME, "td") # td에 접근
-
     if len(tds) == 0:
         continue
 
     rank = tds[0].text # 순위 넣기
     name = tds[2].text # 곡제목 넣기
     artist = tds[3].text # 가수명 넣기
-
     tup = (rank, name, artist) #튜플로 만들어서 넣기 *쿼리에 넣을때 튜플로 넣어야 돌아감;;
-
     print(tup)
-
     row_list.append(tup) # 리스트에 담기
 
 time.sleep(5)

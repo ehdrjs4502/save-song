@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Menu from "./Menu";
+import Menu from "../components/Menu";
 import axios from "axios";
-import AddBtn from './AddBtn';
+import AddBtn from '../components/AddBtn';
 import '../css/info.css'
-import SongList from "./SongList";
+import SongList from "../components/SongList";
 
 function UserInfo({match}) {
     const { id } = useParams(); // UserInfo/id -> id 값을 저장

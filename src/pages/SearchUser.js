@@ -1,9 +1,9 @@
-import Menu from "./Menu";
+import Menu from "../components/Menu";
 import axios from "axios";
 import React, { useState } from "react";
-import FollowBtn from "./FollowBtn";
+import FollowBtn from "../components/FollowBtn";
 import { Link } from "react-router-dom";
-import '../css/search.css';
+import '../css/searchUser.css';
 import search from '../img/search.png';
 
 function SearchUser() {
@@ -42,21 +42,26 @@ function SearchUser() {
             </div>
             <div className="searchBox">
                 <div className="searchForm">
-                    <input type="search" className="searchInput" placeholder="유저 아이디 입력" onKeyPress={handleOnKeyPress} onKeyUp={getUserList} onChange={onChangeSearch}/> 
+                    <input type="search" className="searchInput" placeholder="유저 아이디 또는 유저명 입력" onKeyPress={handleOnKeyPress} onKeyUp={getUserList} onChange={onChangeSearch}/> 
                     <button type="button" className="searchBtn" onClick={getUserList}><img className="searchImg" alt="searchImg" src={search}/></button>
                 </div>
             </div>
 
-            <div>
+            <div className = "userListBox">
+                <table className = "userListTable">
                 {searchList.map((item) => {
                     return (
-                        <div>
-                            <ul>
-                                <li><Link to={`/UserInfo/${item.id}`}>{item.id} / {item.name} </Link><FollowBtn toId = {item.id} fromId = {id}/></li>
-                            </ul>
-                        </div>
+                        <tr>
+                            <td><Link to={`/UserInfo/${item.id}`}>
+                                    {item.id}<br></br>
+                                    {item.name} 
+                                </Link>
+                            </td>
+                            <td><FollowBtn toId = {item.id} fromId = {id}/></td>
+                        </tr>
                     )
                 })}
+                </table>
             </div>
         </div>
     )

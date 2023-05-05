@@ -4,9 +4,15 @@ import '../css/followModal.css'
 import FollowBtn from "./FollowBtn";
 
 function Followings(props) {
-    const [followList, setFollowList] = useState(props.followList);
+    const [followList, setFollowList] = useState([]);
+
+    useEffect(() => {
+        setFollowList(props.followList);
+    }, [props.followList]);
+
     const id = props.fromId;
-    console.log(followList);
+
+    console.log("잉")
     
     return(
         <div>

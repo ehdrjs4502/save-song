@@ -1,6 +1,6 @@
-import AgeGroupTop from "./AgeGroupTop";
-import Menu from "./Menu";
-import PopularChart from "./PopularChart";
+import AgeGroupTop from "../components/AgeGroupTop";
+import Menu from "../components/Menu";
+import PopularChart from "../components/PopularChart";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function Main() {

@@ -1,11 +1,11 @@
-import Login from './components/Login';
-import SignUp from './components/SignUp';
-import Main from './components/Main';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import Main from './pages/Main';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import MyInfo from './components/MyInfo';
-import Search from './components/Search';
-import SearchUser from './components/SearchUser';
-import UserInfo from './components/UserInfo';
+import MyInfo from './pages/MyInfo';
+import Search from './pages/Search';
+import SearchUser from './pages/SearchUser';
+import UserInfo from './pages/UserInfo';
 
 
 function App() {

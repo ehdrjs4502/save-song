@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
-import AddBtn from './AddBtn';
-import Menu from "./Menu";
+import AddBtn from '../components/AddBtn';
+import Menu from "../components/Menu";
 import '../css/search.css';
 import search from '../img/search.png';
 
@@ -50,8 +50,8 @@ function Search() {
                     <div>
                         <table className="searchTable">
                             <tr>
-                                <th  style={{width:'70%'}}>곡제목</th>
-                                <th  style={{width:'30%'}}>가수명</th>
+                                <th >곡제목</th>
+                                <th >가수명</th>
                                 <th></th>
                             </tr>
                         {searchList.map((item) => {
