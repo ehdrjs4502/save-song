@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import AddBtn from "./AddBtn";
+import { Link } from "react-router-dom";
 
 function SongList(props) {
     const [songList, setSongList] = useState([]);
@@ -42,6 +43,10 @@ function SongList(props) {
         });
     };
 
+    const truncate = (str, n) => {
+        return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+    };
+
     return(
         <div>
             <div>
@@ -60,9 +65,10 @@ function SongList(props) {
                         {songList.map((item, idx) => {
                             return (
                                 <tr>
-                                    <td>{idx + 1}</td>
-                                    <td>{item.name}</td>
-                                    <td>{item.artist}</td>
+                                        <td>{idx + 1}</td>
+                                        <td><Link to={`/Song/${item.name} ${item.artist}`}>{truncate(item.name, 30)}</Link></td>
+                                        <td>{truncate(item.artist, 20)}</td>
+                                    
                                     <td>
                                         {userId === loginId ? 
                                             <button className="delSongBtn" onClick={() => onClickDelBtn(item.name, item.artist)}>X</button> : 

@@ -8,12 +8,10 @@ function Followings(props) {
 
     useEffect(() => {
         setFollowList(props.followList);
-    }, [props.followList]);
+    }, []);
 
     const id = props.fromId;
 
-    console.log("잉")
-    
     return(
         <div>
             <div>

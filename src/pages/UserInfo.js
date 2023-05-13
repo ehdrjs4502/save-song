@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Menu from "../components/Menu";
 import axios from "axios";
-import AddBtn from '../components/AddBtn';
 import '../css/info.css'
 import SongList from "../components/SongList";
 

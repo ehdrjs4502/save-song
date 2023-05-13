@@ -1,14 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import AddBtn from "./AddBtn";
-import { type } from "@testing-library/user-event/dist/type";
+import { Link } from "react-router-dom";
 
 function AgeGroupTop(props) {
     const [topList, SetTopList] = useState([]);
     //.replace(/.$/, '0');
     const ageGroup = props.userAge.toString().replace(/.$/, '0');
     const gender = props.userGender;
-
     console.log(gender);
 
     useEffect(() => {
@@ -30,7 +29,7 @@ function AgeGroupTop(props) {
         <div style={{fontSize:'12px', marginTop:'15%'}}>
             <div><h2>{ageGroup}대 {gender}성 Top 3</h2></div>
             <div>
-                <table className="" style={{textAlign:'center'}}>
+                <table className="topTable" style={{textAlign:'center'}}>
                     <tr>
                         <th>순위</th>
                         <th>곡제목</th>
@@ -41,7 +40,7 @@ function AgeGroupTop(props) {
                         return (
                             <tr>
                                 <td>{index + 1}</td>
-                                <td>{truncate(item.name,10)}</td>
+                                <td><Link to={`/Song/${item.name} ${item.artist}`}>{truncate(item.name, 10)}</Link></td>
                                 <td>{truncate(item.artist,10)}</td>
                                 <td><AddBtn size = 'small'  name = {item.name} artist = {item.artist}/></td>
                             </tr>

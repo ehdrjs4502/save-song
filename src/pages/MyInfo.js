@@ -61,7 +61,9 @@ function MyInfo() {
     useEffect(() => {
         getFollowList();
         getFollowerList();
-    }, []);
+    }, [followList.length]);
+
+    console.log(followList.length);
 
     return(
         <div>

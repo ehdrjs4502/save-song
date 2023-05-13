@@ -2,6 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import AddBtn from './AddBtn';
 import '../css/table.css'
+import { Link } from "react-router-dom";
 
 function PopularChart() {
     const [songList, SetSongList] = useState([])
@@ -20,7 +21,7 @@ function PopularChart() {
     };
 
     return(
-        <div style={{}}>
+        <div>
             <div><h2>인기차트</h2></div>
             <div>
                 <table className="popularTable" style={{textAlign:'center'}}>
@@ -34,7 +35,7 @@ function PopularChart() {
                         return (
                             <tr>
                                 <td>{item.popular_rank}</td>
-                                <td>{truncate(item.name,25)}</td>
+                                <td><Link to={`/Song/${item.name} ${item.artist}`}>{truncate(item.name, 30)}</Link></td>
                                 <td>{truncate(item.artist,15)}</td>
                                 <td><AddBtn name = {item.name} artist = {item.artist}/></td>
                             </tr>

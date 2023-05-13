@@ -12,6 +12,11 @@
     margin-bottom: 50px;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
 .header :nth-child(n+2):hover {
     cursor: pointer;
 }
@@ -34,6 +39,10 @@
 .songTable td {
     border-bottom: 1px solid rgba(46, 46, 46, 0.366);
     padding: 10px 30px 10px 30px;
+}
+
+.songTable tr:not(:first-of-type):hover {
+    background-color: rgb(230, 230, 230);
 }
 
 .songListTitle {

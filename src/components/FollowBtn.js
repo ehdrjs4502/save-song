@@ -7,7 +7,6 @@ function FollowBtn(props) {
     const [isFollowing, setIsFollowing] = useState(false);
     const toId = props.toId; // 팔로우할 아이디
     const fromId = props.fromId; // 내 아이디
-
     
     useEffect(() => {
         function chkFollow() {

@@ -6,6 +6,7 @@ import MyInfo from './pages/MyInfo';
 import Search from './pages/Search';
 import SearchUser from './pages/SearchUser';
 import UserInfo from './pages/UserInfo';
+import Song from './pages/Song';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path='/SearchUser' element={<SearchUser/>}></Route>
           <Route path='/MyInfo' element={<MyInfo/>}></Route>
           <Route path='/UserInfo/:id' element={<UserInfo/>}></Route>
+          <Route path='/Song/:title' element={<Song/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -4,7 +4,6 @@ import PopularChart from "../components/PopularChart";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function Main() {
-    console.log(sessionStorage.getItem("userInfo"))
     if(sessionStorage.getItem("userInfo") == null ) {
         return(
             <div>

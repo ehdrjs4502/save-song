@@ -13,9 +13,12 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-modal": "^3.16.1",
+    "react-player": "^2.12.0",
     "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
     "react-xml-parser": "^1.1.8",
+    "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4",
     "xml-js": "^1.6.11"
   },
