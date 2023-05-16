@@ -7,6 +7,7 @@ const songRouter = require('./routers/song-router.js');
 const searchRouter = require('./routers/search-router.js');
 const followRouter = require('./routers/follow-router.js');
 const userRouter = require('./routers/user-router.js');
+const likeRouter = require('./routers/like-router.js');
 
 const app = express();
 
@@ -31,6 +32,8 @@ app.use('/search', searchRouter);
 app.use('/follow',followRouter);
 
 app.use('/user', userRouter);
+
+app.use('/likes', likeRouter);
 
 app.listen(app.get('port'), () => {
     console.log('Express server listening on port ' + app.get('port'));
