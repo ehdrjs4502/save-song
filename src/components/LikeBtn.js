@@ -8,7 +8,26 @@ function LikeBtn({ songTitle, songArtist, userID }) {
     useEffect(() => {
         // 노래의 좋아요 정보를 가져오는 함수
         getLikeInfo();
+
+        // 유저가 노래 좋아요 눌렀는지 확인
+        chkLike();
     }, []);
+
+    function chkLike() {
+        axios.post("http://localhost:3001/likes/isLike", {
+            songTitle : songTitle,
+            songArtist : songArtist,
+            userID : userID,
+        }).then((res) => {
+            if(res.data.length === 0) {
+                setLiked(false);
+            } else {
+                setLiked(true);
+            }
+        }).catch((err) => {
+            console.error(err);
+        });
+    }
 
     const getLikeInfo = async () => {
         try {
@@ -24,43 +43,34 @@ function LikeBtn({ songTitle, songArtist, userID }) {
         }
     };
 
-    const handleLike = async () => {
-        try {
-            // 좋아요 버튼 클릭 시 서버로 좋아요 요청을 보냄
-            await axios.post("http://localhost:3001/likes/like", {
-            songTitle : songTitle,
-            songArtist : songArtist,
-            userID : userID,
-        }).then((res) => {
-            console.log(res);
-        });
-        // 좋아요 요청이 성공하면 버튼 상태 변경
-        setLiked(true);
-        setLikeCount((prevCount) => prevCount + 1);
-        } catch (error) {
-            console.error("Error liking the song:", error);
-        }
-    };
-
-    const handleUnlike = async () => {
-        try {
-        // 좋아요 취소 버튼 클릭 시 서버로 좋아요 취소 요청을 보냄
-        await axios.delete("http://localhost:3001/likes/unlike", {
-            songTitle : songTitle,
-            songArtist : songArtist,
-            userID : userID,
-        });
-        // 좋아요 취소 요청이 성공하면 버튼 상태 변경
-        setLiked(false);
-        setLikeCount((prevCount) => prevCount - 1);
-        } catch (error) {
-            console.error("Error unliking the song:", error);
+    const onClickLikeBtn = () => {
+        // 좋아요 버튼 클릭 시 서버로 좋아요 요청을 보냄
+        if(!liked) {
+            axios.post("http://localhost:3001/likes/like", {
+                songTitle : songTitle,
+                songArtist : songArtist,
+                userID : userID,
+            }).then((res) => {
+                console.log(res);
+            });
+            // 좋아요 요청이 성공하면 버튼 상태 변경
+            setLiked(true);
+            setLikeCount((prevCount) => prevCount + 1);
+        } else {
+            axios.post("http://localhost:3001/likes/unLike", {
+                songTitle : songTitle,
+                songArtist : songArtist,
+                userID : userID,
+            });
+            // 좋아요 취소 요청이 성공하면 버튼 상태 변경
+            setLiked(false);
+            setLikeCount((prevCount) => prevCount - 1);
         }
     };
 
     return (
     <div>
-        <button onClick={liked ? handleUnlike : handleLike}>
+        <button onClick={() => onClickLikeBtn()}>
             {liked ? "Unlike" : "Like"}
         </button>
         <span>{likeCount}</span>

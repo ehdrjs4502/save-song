@@ -10,10 +10,6 @@ function Menu() {
     function onClickLogOut() { //로그아웃 버튼 눌렀을 때 함수
         console.log("handleLogout");
         window.sessionStorage.clear(); // 세션 삭제
-        console.log(
-        "handleLogout:window.sessionStorage(login_id) =>",
-        window.sessionStorage.getItem("id")
-        );
         navigate("/"); // 로그인 페이지로 이동
     }
 

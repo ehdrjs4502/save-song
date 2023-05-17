@@ -40,7 +40,7 @@ function AgeGroupTop(props) {
                         return (
                             <tr>
                                 <td>{index + 1}</td>
-                                <td><Link to={`/Song/${item.name} ${item.artist}`}>{truncate(item.name, 10)}</Link></td>
+                                <td><Link to={`/Song/${item.name.replace(/ /g, '')} ${item.artist.replace(/ /g, '')}`}>{truncate(item.name, 10)}</Link></td>
                                 <td>{truncate(item.artist,10)}</td>
                                 <td><AddBtn size = 'small'  name = {item.name} artist = {item.artist}/></td>
                             </tr>

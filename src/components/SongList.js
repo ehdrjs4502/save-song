@@ -13,7 +13,6 @@ function SongList(props) {
         axios.post("http://localhost:3001/song/songList", {  // 처음 페이지 로드 될 때 사용자의 음악 가져오기
         id : userId,
         }).then((res) => {
-            console.log(res);
             setSongList(res.data);
         });
     }
@@ -23,15 +22,12 @@ function SongList(props) {
     }, []);
 
     function onClickDelBtn(name, artist) { // 삭제 버튼을 눌렀을 때
-        console.log(name, artist);
 
         axios.post("http://localhost:3001/song/delSong", { // addSong 서버 api 호출
             id : userId, // 현재 세션에 있는 id (로그인한 id)
             name : name, // 노래명
             artist : artist, // 가수명
         }).then((res) => { // 서버에서 res 가져옴
-            console.log("delSong => ", res);
-
             if(res.data.affectedRows === 1) { // 잘 됐으면
                 alert(name + " 제거했습니다.");
                 getSongList();
@@ -66,7 +62,7 @@ function SongList(props) {
                             return (
                                 <tr>
                                         <td>{idx + 1}</td>
-                                        <td><Link to={`/Song/${item.name} ${item.artist}`}>{truncate(item.name, 30)}</Link></td>
+                                        <td><Link to={`/Song/${item.name.replace(/ /g, '')} ${item.artist.replace(/ /g, '')}`}>{truncate(item.name, 30)}</Link></td>
                                         <td>{truncate(item.artist, 20)}</td>
                                     
                                     <td>

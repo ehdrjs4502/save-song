@@ -9,24 +9,23 @@ function FollowBtn(props) {
     const fromId = props.fromId; // 내 아이디
     
     useEffect(() => {
-        function chkFollow() {
-            axios.post("http://localhost:3001/follow/isFollow", {
-                fromUser : fromId,
-                toUser : toId,
-            }).then((res) => {
-                if(res.data.length === 0) {
-                    setIsFollowing(false);
-                } else {
-                    setIsFollowing(true);
-                }
-            }).catch((err) => {
-                console.error(err);
-            });
-        }
-
         chkFollow();
     }, [toId, fromId]);
 
+    function chkFollow() {
+        axios.post("http://localhost:3001/follow/isFollow", {
+            fromUser : fromId,
+            toUser : toId,
+        }).then((res) => {
+            if(res.data.length === 0) {
+                setIsFollowing(false);
+            } else {
+                setIsFollowing(true);
+            }
+        }).catch((err) => {
+            console.error(err);
+        });
+    }
 
     function onClickFollowBtn() {
         if(isFollowing) { // 팔로우 돼있으면 언팔로우
@@ -58,7 +57,7 @@ function FollowBtn(props) {
     }
 
     return(
-        <button className={isFollowing ? "unfollowBtn" : "followBtn"} onClick={() => onClickFollowBtn(toId)}>{isFollowing ? "언팔로우" : "팔로우"}</button>
+        <button className={isFollowing ? "unfollowBtn" : "followBtn"} onClick={() => onClickFollowBtn()}>{isFollowing ? "언팔로우" : "팔로우"}</button>
     )
 };
 

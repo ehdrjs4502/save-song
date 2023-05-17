@@ -9,6 +9,7 @@ function Song({match}) {
     const [SongID, SetSongID] = useState("");
     const { title } = useParams();
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+    console.log(title);
 
     async function getMusicList(keyword) { // 노래 가져오는 함수
         const search = keyword + " 가사";

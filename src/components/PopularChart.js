@@ -12,7 +12,7 @@ function PopularChart() {
         .then((res) => {
             const list = res.data
             SetSongList(list)
-            console.log(list)
+
         })
     },[])
 
@@ -35,7 +35,7 @@ function PopularChart() {
                         return (
                             <tr>
                                 <td>{item.popular_rank}</td>
-                                <td><Link to={`/Song/${item.name} ${item.artist}`}>{truncate(item.name, 30)}</Link></td>
+                                <td><Link to={`/Song/${item.name.replace(/ /g, '')} ${item.artist.replace(/ /g, '')}`}>{truncate(item.name, 30)}</Link></td>
                                 <td>{truncate(item.artist,15)}</td>
                                 <td><AddBtn name = {item.name} artist = {item.artist}/></td>
                             </tr>
