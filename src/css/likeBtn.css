@@ -1,0 +1,33 @@
+.likeBtn {
+    color: black;
+    border:none; 
+    border-radius:10px; 
+    min-height: 40px;
+    min-width: 55px;
+    font-weight: bold;
+    background-color: white;
+    border: 1.5px solid rgb(113, 113, 113);
+    font-size: 15px;
+}
+
+.likeBtn:hover {
+    cursor: pointer;
+    background-color: #ff4b4b;
+}
+
+.unlikeBtn {
+    background-color: #ff4b4b;
+    color: #fff;
+    border:none; 
+    border-radius:10px; 
+    min-height: 40px;
+    min-width: 55px;
+    font-weight: bold;
+    font-size: 15px;
+    border: 1.5px solid rgb(252, 172, 172);
+}
+
+.unlikeBtn:hover {
+    background-color: #c72525;
+    cursor: pointer;
+}

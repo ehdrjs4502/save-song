@@ -52,27 +52,31 @@ function SongList(props) {
                 {songList.length === 0 ? (<div><h3>노래를 추가해주세요~</h3></div>) : 
                 (<div>
                     <table className="songTable" style={{textAlign:'center'}}>
-                        <tr>
-                            <th>번호</th>
-                            <th>곡제목</th>
-                            <th>가수명</th>
-                            <th></th>
-                        </tr>
-                        {songList.map((item, idx) => {
-                            return (
-                                <tr>
-                                        <td>{idx + 1}</td>
-                                        <td><Link to={`/Song/${item.name.replace(/ /g, '')} ${item.artist.replace(/ /g, '')}`}>{truncate(item.name, 30)}</Link></td>
-                                        <td>{truncate(item.artist, 20)}</td>
-                                    
-                                    <td>
-                                        {userId === loginId ? 
-                                            <button className="delSongBtn" onClick={() => onClickDelBtn(item.name, item.artist)}>X</button> : 
-                                            <AddBtn name = {item.name} artist = {item.artist}></AddBtn>}
-                                    </td>
-                                </tr>
-                            )
-                        })}
+                        <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>곡제목</th>
+                                <th>가수명</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {songList.map((item, index) => {
+                                return (
+                                    <tr key={index}>
+                                            <td>{index + 1}</td>
+                                            <td><Link to={`/Song/${item.name.replace(/ /g, '')} ${item.artist.replace(/ /g, '')}`}>{truncate(item.name, 30)}</Link></td>
+                                            <td>{truncate(item.artist, 20)}</td>
+                                        
+                                        <td>
+                                            {userId === loginId ? 
+                                                <button className="delSongBtn" onClick={() => onClickDelBtn(item.name, item.artist)}>X</button> : 
+                                                <AddBtn name = {item.name} artist = {item.artist}></AddBtn>}
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
                     </table>
                 </div>)}
             </div>

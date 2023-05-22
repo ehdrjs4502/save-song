@@ -9,11 +9,10 @@ function Song({match}) {
     const [SongID, SetSongID] = useState("");
     const { title } = useParams();
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-    console.log(title);
 
     async function getMusicList(keyword) { // 노래 가져오는 함수
         const search = keyword + " 가사";
-        const API_URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${search}&maxResults=1&key=AIzaSyD6uIASZdxDE7ynF7G5fqaKzW4MnkJHBm0`
+        const API_URL = `https://www.googleapis.com/youtube/v3/search?part=id&q=${search}&maxResults=1&fields=items(id(videoId))&key=AIzaSyD6uIASZdxDE7ynF7G5fqaKzW4MnkJHBm0`
         await axios.get(API_URL)
         .then((res) => {
             console.log(res);
@@ -29,9 +28,13 @@ function Song({match}) {
 
     return (
         <div>
-            <Menu></Menu>
-            <ReactPlayer url={`https://www.youtube.com/watch?v=${SongID}`}  playing   controls/>
-            <LikeBtn songTitle={title.split(" ")[0]} songArtist={title.split(" ")[1]} userID={userInfo['id']}></LikeBtn>
+            <Menu/>
+            <div className="youtubeBox" style={{display:"flex", justifyContent:"center"}}>
+                <ReactPlayer url={`https://www.youtube.com/watch?v=${SongID}`} playing controls/>
+            </div>
+            <div className="likeBox" style={{display:"flex", justifyContent:"center"}}>
+                <LikeBtn songTitle={title.split(" ")[0]} songArtist={title.split(" ")[1]} userID={userInfo['id']}/>
+            </div>
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React from 'react';
-import '../css/btn.css'
+import '../css/addbtn.css'
 
 function AddBtn(props) {
     function addSong(name, artist) {

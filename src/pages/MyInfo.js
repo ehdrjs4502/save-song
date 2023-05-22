@@ -63,8 +63,6 @@ function MyInfo() {
         getFollowerList();
     }, [followList.length]);
 
-    console.log(followList.length);
-
     return(
         <div>
             <Menu/>

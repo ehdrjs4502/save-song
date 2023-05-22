@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../css/likeBtn.css";
+import like from '../img/like.png';
+import unlike from '../img/unlike.png';
 
 function LikeBtn({ songTitle, songArtist, userID }) {
     const [liked, setLiked] = useState(false);
@@ -70,10 +73,10 @@ function LikeBtn({ songTitle, songArtist, userID }) {
 
     return (
     <div>
-        <button onClick={() => onClickLikeBtn()}>
-            {liked ? "Unlike" : "Like"}
+        <button className={liked ? "unlikeBtn" : "likeBtn"}  onClick={() => onClickLikeBtn()}>
+            {liked ? <span>♥</span> : <span>♡</span>} {likeCount}
         </button>
-        <span>{likeCount}</span>
+        
     </div>
     );
     }

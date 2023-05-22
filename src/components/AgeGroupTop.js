@@ -8,7 +8,6 @@ function AgeGroupTop(props) {
     //.replace(/.$/, '0');
     const ageGroup = props.userAge.toString().replace(/.$/, '0');
     const gender = props.userGender;
-    console.log(gender);
 
     useEffect(() => {
         axios.post("http://localhost:3001/song/getTopSongList", {
@@ -16,7 +15,6 @@ function AgeGroupTop(props) {
             gender : gender,
         }).then((res) => {
             const list = res.data;
-            console.log(res.data);
             SetTopList(list);
         });
     },[]);
@@ -30,22 +28,28 @@ function AgeGroupTop(props) {
             <div><h2>{ageGroup}대 {gender}성 Top 3</h2></div>
             <div>
                 <table className="topTable" style={{textAlign:'center'}}>
-                    <tr>
-                        <th>순위</th>
-                        <th>곡제목</th>
-                        <th>가수명</th>
-                        <th></th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>순위</th>
+                            <th>곡제목</th>
+                            <th>가수명</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
                     {topList.map((item, index) => {
                         return (
-                            <tr>
-                                <td>{index + 1}</td>
-                                <td><Link to={`/Song/${item.name.replace(/ /g, '')} ${item.artist.replace(/ /g, '')}`}>{truncate(item.name, 10)}</Link></td>
-                                <td>{truncate(item.artist,10)}</td>
-                                <td><AddBtn size = 'small'  name = {item.name} artist = {item.artist}/></td>
-                            </tr>
+                            
+                                <tr key={index}>
+                                    <td>{index + 1}</td>
+                                    <td><Link to={`/Song/${item.name.replace(/ /g, '')} ${item.artist.replace(/ /g, '')}`}>{truncate(item.name, 10)}</Link></td>
+                                    <td>{truncate(item.artist,10)}</td>
+                                    <td><AddBtn size = 'small'  name = {item.name} artist = {item.artist}/></td>
+                                </tr>
+                            
                         )
                     })}
+                    </tbody>
                 </table>
             </div>
         </div>
