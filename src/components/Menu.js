@@ -17,11 +17,14 @@ function Menu() {
         <div className="menuBox" style={{borderBottom:'1px solid black'}}>
             <div className="headerLogo">
                 <Link to="/Main">
-                    <img src={mic} style={{width:"50px"}}/>
+                    <img className="logo_img" src={mic}/>
                     <h2>Save Song !</h2>
                 </Link>
             </div>
-            <div>
+            <div className="arrow">
+                <span>펼치기</span>
+            </div>
+            <div className="menu">
                 <ul>
                     <li><Link style={pathName === "/Main" ? {color : 'blue'} : {color : 'black'}} to="/Main">Top 100</Link></li>
                     <li><Link style={pathName === "/Search" ? {color : 'blue'} : {color : 'black'}} to="/Search">노래 검색</Link></li>
@@ -29,7 +32,11 @@ function Menu() {
                     <li><Link style={pathName === "/MyInfo" ? {color : 'blue'} : {color : 'black'}} to="/MyInfo">My Info</Link></li>
                 </ul>
             </div>
-            <div><span className="userName">{userName}</span> <button className="logoutBtn" onClick={onClickLogOut}>로그아웃</button></div>
+            <div className="user">
+                <span className="userName">{userName}</span> 
+                <button className="logoutBtn" onClick={onClickLogOut}>로그아웃</button>
+            </div>
+            
         </div>
     )
 }

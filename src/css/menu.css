@@ -16,6 +16,10 @@
     color: black;
 }
 
+.logo_img {
+    width: 50px;
+}
+
 .headerLogo a:hover {
     color: blue;
 }
@@ -24,23 +28,25 @@
     margin-left: 30px;
 }
 
-.menuBox ul {
-    padding: 0;
+.menu ul {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
 }
 
-.menuBox ul li {
-    display: inline-block;
-    margin-right: 80px;
+.menu ul li {
     font-weight: bold;
     font-size: 20px;
+    padding: 8px 25px;
 }
 
-.menuBox ul li a {
+
+.menu ul li a {
     text-decoration: none;
     color: black;
 }
 
-.menuBox ul li a:hover {
+.menu ul li a:hover {
     color: blue;
 }
 
@@ -65,4 +71,50 @@
 .logoutBtn:hover {
     cursor: pointer;
     background-color: #0055ff;
+}
+
+.arrow {
+    display: none;
+}
+
+@media screen and (max-width: 972px) {
+    .menuBox {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .headerLogo a {
+        font-size: 13px;
+    }
+
+    .logo_img {
+        width: 30px;
+    }
+
+    .menu ul {
+        flex-direction: column;
+        align-items: center;
+        
+    }
+
+    .menu {
+        display: none;
+        width: 100%;
+    }
+
+    .menu ul li {
+        width: 100%;
+        text-align: center;
+        font-size: 15px;
+    }
+
+    .user {
+        position: absolute;
+        right: 10px;
+        margin-top: 30px;
+    }
+
+    .arrow {
+        display: block;
+    }
 }

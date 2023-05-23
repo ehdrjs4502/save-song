@@ -29,10 +29,10 @@ function Song({match}) {
     return (
         <div>
             <Menu/>
-            <div className="youtubeBox" style={{display:"flex", justifyContent:"center"}}>
+            <div className="youtubeBox" style={{display:"flex", justifyContent:"center", marginTop:"30px"}}>
                 <ReactPlayer url={`https://www.youtube.com/watch?v=${SongID}`} playing controls/>
             </div>
-            <div className="likeBox" style={{display:"flex", justifyContent:"center"}}>
+            <div className="likeBox" style={{display:"flex", justifyContent:"center", marginTop:"30px"}}>
                 <LikeBtn songTitle={title.split(" ")[0]} songArtist={title.split(" ")[1]} userID={userInfo['id']}/>
             </div>
         </div>
