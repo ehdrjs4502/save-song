@@ -32,7 +32,6 @@ for tr in trs:
     tds = tr.find_elements(By.TAG_NAME, "td") # td에 접근
     if len(tds) == 0:
         continue
-
     rank = tds[0].text # 순위 넣기
     name = tds[2].text # 곡제목 넣기
     artist = tds[3].text # 가수명 넣기

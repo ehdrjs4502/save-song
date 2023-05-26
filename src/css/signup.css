@@ -64,7 +64,8 @@
 }
 
 .GenderRadio {
-    margin-top: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 .GenderRadio input[type=radio]{
     display: none;
@@ -100,6 +101,10 @@
     color: red;
     font-size: 12px;
     font-weight: bold;
+}
+
+.GoToLogin {
+    margin-top: 10px;
 }
 
 .GoToLogin a{

@@ -3,11 +3,13 @@ import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../css/login.css";
 import mic from '../img/mic.png';
+import Box from '@mui/material/Box';
+import {TextField, Button, Stack} from '@mui/material';
 
 function Login() {
     const navigate = useNavigate();
-    const idRef = useRef();
-    const pwRef = useRef();
+    const idRef = useRef("");
+    const pwRef = useRef("");
 
     const handleOnKeyPress = e => { // input search에서 클릭 했을 때에 함수
         if (e.key === 'Enter') {
@@ -41,9 +43,8 @@ function Login() {
                 navigate("/Main");
               } else {
                 alert("아이디, 패스워드가 정확하지 않습니다.");
-                idRef.current.value = "";
                 pwRef.current.value = "";
-                navigate("/");  
+                pwRef.current.focus();
               }
         })
     }
@@ -56,12 +57,20 @@ function Login() {
                     <h1 className="Title">Save Song !</h1>
                 </div>
                 <div>
-                    <form>
-                        <div><input className="InputBox" type="text" name="id" size="20" placeholder="ID" ref={idRef}></input></div>
-                        <div><input className="InputBox" type="password" name="id" size="20" placeholder="PASSWORD" ref={pwRef} onKeyPress={handleOnKeyPress}></input></div>
-                        <div><input className="LoginBtn" type="button" value="로그인" onClick={onClickLogin}></input></div>
-                    </form>
+                    <Box component="form" sx={{
+                            '& .MuiTextField-root': { m: 2, width: '42ch', height: '6ch'},
+                        }}
+                        noValidate autoComplete="off">
+                            <div>
+                            <TextField id="outlined-required" label="ID" type="text" variant="outlined" inputRef={idRef} />
+                            <TextField id="filled-password-input" label="Password" type="password" variant="outlined" inputRef={pwRef} onKeyPress={handleOnKeyPress}/>
+                            </div>
+                            <Button variant="contained" onClick={onClickLogin} sx={{marginTop: 3}}>로그인</Button>
+                    </Box>
                     <div className="SignDiv"><span>아직 계정이 없으신가요?</span><Link to="/SignUp" className="SignUpLink">회원가입</Link></div>
+                        {/* <div><input className="InputBox" type="text" name="id" size="20" placeholder="ID" ref={idRef}></input></div>
+                        <div><input className="InputBox" type="password" name="id" size="20" placeholder="PASSWORD" ref={pwRef} onKeyPress={handleOnKeyPress}></input></div>
+                        <div><input className="LoginBtn" type="button" value="로그인" ></input></div> */}
                 </div>
             </div>
         </div>
