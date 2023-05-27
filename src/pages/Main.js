@@ -16,13 +16,9 @@ function Main() {
     
         return(
             <div>
-                <div><Menu/></div>
-                <div style={{display:'flex', justifyContent:'space-evenly'}}>
-                    <div></div>
-                    <PopularChart/>
-                    <AgeGroupTop userAge = {userInfo.age} userGender = {userInfo.gender} />
-                </div>
-                <div></div>
+                <Menu/>
+                <AgeGroupTop userAge = {userInfo.age} userGender = {userInfo.gender} />
+                <PopularChart/>
             </div>
         )
     }

@@ -23,6 +23,7 @@
     "react-slick": "^0.29.0",
     "react-xml-parser": "^1.1.8",
     "slick-carousel": "^1.8.1",
+    "swiper": "^9.3.2",
     "web-vitals": "^2.1.4",
     "xml-js": "^1.6.11"
   },

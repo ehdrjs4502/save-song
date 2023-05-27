@@ -3,6 +3,15 @@ import { useEffect, useState } from "react";
 import AddBtn from "./AddBtn";
 import { Link } from "react-router-dom";
 
+import { Autoplay, } from "swiper";
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
 function AgeGroupTop(props) {
     const [topList, SetTopList] = useState([]);
     //.replace(/.$/, '0');
@@ -23,35 +32,32 @@ function AgeGroupTop(props) {
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
     };
 
+
     return (
-        <div style={{fontSize:'12px', marginTop:'15%'}}>
-            <div><h2>{ageGroup}대 {gender}성 Top 3</h2></div>
-            <div>
-                <table className="topTable" style={{textAlign:'center'}}>
-                    <thead>
-                        <tr>
-                            <th>순위</th>
-                            <th>곡제목</th>
-                            <th>가수명</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {topList.map((item, index) => {
-                        return (
-                            
-                                <tr key={index}>
-                                    <td>{index + 1}</td>
-                                    <td><Link to={`/Song/${item.name.replace(/ /g, '')} ${item.artist.replace(/ /g, '')}`}>{truncate(item.name, 10)}</Link></td>
-                                    <td>{truncate(item.artist,10)}</td>
-                                    <td><AddBtn size = 'small'  name = {item.name} artist = {item.artist}/></td>
-                                </tr>
-                            
-                        )
-                    })}
-                    </tbody>
-                </table>
-            </div>
+        <div style={{float:"right", position:"absolute", right:"5%"}}>
+        <div style={{display:"flex", alignItems:"center", fontSize:13}}>
+            <h2>{ageGroup}대 {gender}성 Top 3</h2>
+            <Swiper slidesPerView="1"
+                        mousewheel={true}
+                        direction="vertical"
+                        autoplay={{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+                        modules={[Autoplay]}
+                        loop={true}
+                        style={{width:350, height:30, marginTop:12}}>
+                {topList.map((item, index) => {
+                    return (
+                        <SwiperSlide>
+                            <div key={index} style={{display:"flex", justifyContent:"space-around"}}>
+                                <span>{index + 1}</span>
+                                <span><Link to={`/Song/${item.name.replace(/ /g, '')} ${item.artist.replace(/ /g, '')}`}>{truncate(item.name, 7)}</Link></span>
+                                <span>{truncate(item.artist,5)}</span>
+                                <span><AddBtn size = 'small'  name = {item.name} artist = {item.artist}/></span>
+                            </div>
+                        </SwiperSlide>
+                    )
+                })}
+            </Swiper>
+        </div>
         </div>
     )
 }

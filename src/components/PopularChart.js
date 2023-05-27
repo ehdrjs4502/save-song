@@ -21,10 +21,10 @@ function PopularChart() {
     };
 
     return(
-        <div>
-            <div><h2>인기차트</h2></div>
-            <div>
-                <table className="popularTable" style={{textAlign:'center'}}>
+        <div style={{display:"flex", alignItems:"center", flexDirection:"column", marginTop:"45px"}}>
+            <div style={{alignSelf:"flex-start", marginLeft:"9%"}}><h2>인기차트</h2></div>
+            <div style={{width:"85%", overflowX:"auto"}}>
+                <table className="popularTable" style={{textAlign:'center', width:"100%"}}>
                     <thead>
                         <tr>
                             <th>순위</th>

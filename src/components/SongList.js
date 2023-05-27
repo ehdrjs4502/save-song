@@ -50,8 +50,8 @@ function SongList(props) {
             </div>
             <div className="songTableBox">
                 {songList.length === 0 ? (<div><h3>노래를 추가해주세요~</h3></div>) : 
-                (<div>
-                    <table className="songTable" style={{textAlign:'center'}}>
+                (<div style={{overflowX:"auto", width:"80%"}}>
+                    <table className="songTable" style={{textAlign:'center', width:"100%"}}>
                         <thead>
                             <tr>
                                 <th>번호</th>
