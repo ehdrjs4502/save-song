@@ -8,7 +8,9 @@ function Followings(props) {
 
     useEffect(() => {
         setFollowList(props.followList);
-    }, []);
+    }, [props.followList]);
+
+    console.log(followList);
 
     const id = props.fromId;
 
@@ -21,9 +23,11 @@ function Followings(props) {
                 <hr/>
                 <div>
                     <table className="followTable">
-                        {followList.map((item) => {
+                        <thead></thead>
+                        <tbody>
+                        {followList.map((item, idx) => {
                             return(
-                                <tr>
+                                <tr key={idx}>
                                     <td className="userID">
                                         <Link to={`/UserInfo/${item.to_user}`}>
                                             {item.to_user}
@@ -37,6 +41,7 @@ function Followings(props) {
                                 </tr>
                             )
                         })}
+                        </tbody>
                     </table>
                     
                 </div>

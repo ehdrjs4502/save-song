@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/likeBtn.css";
-import like from '../img/like.png';
-import unlike from '../img/unlike.png';
 
 function LikeBtn({ songTitle, songArtist, userID }) {
     const [liked, setLiked] = useState(false);

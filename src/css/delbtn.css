@@ -1,0 +1,15 @@
+.delBtn {
+    background-color: #ff4b4b;
+    color: #fff;
+    border:none; 
+    border-radius:10px; 
+    min-height: 40px;
+    min-width: 55px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.delBtn:hover {
+    background-color: #c72525;
+    cursor: pointer;
+}

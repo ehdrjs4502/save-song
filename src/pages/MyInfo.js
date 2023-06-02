@@ -22,8 +22,8 @@ function MyInfo() {
             background: "rgb(255, 255, 255)",
             overflow: "auto",
             top: "15vh",
-            left: "38vw",
-            right: "38vw",
+            left: "35vw",
+            right: "35vw",
             bottom: "30vh",
             minWidth: "250px",
             WebkitOverflowScrolling: "touch",
@@ -78,11 +78,11 @@ function MyInfo() {
             </div>
 
 
-            <Modal style={modalStyle} isOpen={followIsOpen} onRequestClose={() => setFollowIsOpen(false)}>
+            <Modal style={modalStyle} ariaHideApp={false} isOpen={followIsOpen} onRequestClose={() => setFollowIsOpen(false)}>
                 <Followings followList = {followList} fromId = {id}/>
             </Modal>
 
-            <Modal style={modalStyle} isOpen={followerIsOpen} onRequestClose={() => setFollowerIsOpen(false)}>
+            <Modal style={modalStyle} ariaHideApp={false} isOpen={followerIsOpen} onRequestClose={() => setFollowerIsOpen(false)}>
                 <Followers followerList = {followerList}/>
             </Modal>
         </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import AddBtn from "./AddBtn";
 import { Link } from "react-router-dom";
@@ -22,26 +22,29 @@ function SongList(props) {
     }, []);
 
     function onClickDelBtn(name, artist) { // 삭제 버튼을 눌렀을 때
-
-        axios.post("http://localhost:3001/song/delSong", { // addSong 서버 api 호출
-            id : userId, // 현재 세션에 있는 id (로그인한 id)
-            name : name, // 노래명
-            artist : artist, // 가수명
-        }).then((res) => { // 서버에서 res 가져옴
-            if(res.data.affectedRows === 1) { // 잘 됐으면
-                alert(name + " 제거했습니다.");
-                getSongList();
-            } else { // 잘 안 됐으면 ㅠㅠ
-               alert("오류!!") 
-            };
-        }).catch((e) => {
-            console.error(e)
-        });
+        if(window.confirm(name + " 정말로 삭제하시겠습니까?")) {
+            axios.post("http://localhost:3001/song/delSong", { // addSong 서버 api 호출
+                id : userId, // 현재 세션에 있는 id (로그인한 id)
+                name : name, // 노래명
+                artist : artist, // 가수명
+            }).then((res) => { // 서버에서 res 가져옴
+                if(res.data.affectedRows === 1) { // 잘 됐으면
+                    alert(name + " 제거했습니다.");
+                    getSongList();
+                } else { // 잘 안 됐으면 ㅠㅠ
+                alert("오류!!") 
+                };
+            }).catch((e) => {
+                console.error(e)
+            });
+        }
     };
 
-    const truncate = (str, n) => {
+    const truncate = useMemo(() => {
+        return (str, n) => {
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
-    };
+        };
+    }, []);
 
     return(
         <div>

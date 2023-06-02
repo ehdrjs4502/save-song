@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
 import AddBtn from './AddBtn';
 import '../css/table.css'
 import { Link } from "react-router-dom";
@@ -8,17 +8,19 @@ function PopularChart() {
     const [songList, SetSongList] = useState([])
 
     useEffect(() => {
-        axios.get("http://localhost:3001/song/getPopularChart")
+        axios.get("http://localhost:3001/song/getPopularChart") // 인기차트 가져오기
         .then((res) => {
-            const list = res.data
-            SetSongList(list)
+            const list = res.data;
+            SetSongList(list);
 
-        })
-    },[])
+        });
+    },[]);
 
-    const truncate = (str, n) => {
+    const truncate = useMemo(() => {
+        return (str, n) => {
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
-    };
+        };
+    }, []);
 
     return(
         <div style={{display:"flex", alignItems:"center", flexDirection:"column", marginTop:"45px"}}>
@@ -34,9 +36,9 @@ function PopularChart() {
                         </tr>
                     </thead>
                     <tbody>
-                        {songList.map((item,index) => {
+                        {songList.map((item,idx) => {
                             return (
-                                <tr key={index}>
+                                <tr key={idx}>
                                     <td>{item.popular_rank}</td>
                                     <td><Link to={`/Song/${item.name.replace(/ /g, '')} ${item.artist.replace(/ /g, '')}`}>{truncate(item.name, 30)}</Link></td>
                                     <td>{truncate(item.artist,15)}</td>

@@ -7,6 +7,12 @@ function Menu() {
     const pathName = useLocation().pathname;
     const userName = JSON.parse(sessionStorage.getItem("userInfo")).name;
 
+    const selected = {
+        color : 'white', 
+        borderRadius:'15px', 
+        backgroundColor:'#3d7eff',
+    }
+
     function onClickLogOut() { //로그아웃 버튼 눌렀을 때 함수
         console.log("handleLogout");
         window.sessionStorage.clear(); // 세션 삭제
@@ -26,10 +32,10 @@ function Menu() {
             </div>
             <div className="menu">
                 <ul>
-                    <li><Link style={pathName === "/Main" ? {color : 'blue'} : {color : 'black'}} to="/Main">Top 100</Link></li>
-                    <li><Link style={pathName === "/Search" ? {color : 'blue'} : {color : 'black'}} to="/Search">노래 검색</Link></li>
-                    <li><Link style={pathName === "/SearchUser" ? {color : 'blue'} : {color : 'black'}} to="/SearchUser">사용자 검색</Link></li>
-                    <li><Link style={pathName === "/MyInfo" ? {color : 'blue'} : {color : 'black'}} to="/MyInfo">My Info</Link></li>
+                    <Link style={pathName === "/Main" ? selected : {color : 'black'}} to="/Main"><li>Top 100</li></Link>
+                    <Link style={pathName === "/Search" ? selected : {color : 'black'}} to="/Search"><li>노래 검색</li></Link>
+                    <Link style={pathName === "/SearchUser" ? selected : {color : 'black'}} to="/SearchUser"><li>사용자 검색</li></Link>
+                    <Link style={pathName === "/MyInfo" ? selected : {color : 'black'}} to="/MyInfo"><li>My Info</li></Link>
                 </ul>
             </div>
             <div className="user">

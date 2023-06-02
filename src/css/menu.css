@@ -21,7 +21,7 @@
 }
 
 .headerLogo a:hover {
-    color: blue;
+    color: rgb(54, 84, 255);
 }
 
 .headerLogo a h2 {
@@ -38,16 +38,17 @@
     font-weight: bold;
     font-size: 20px;
     padding: 8px 25px;
+    border-radius: 15px;
 }
 
 
 .menu ul li a {
     text-decoration: none;
-    color: black;
 }
 
-.menu ul li a:hover {
-    color: blue;
+.menu ul li:hover {
+    background-color: #3d7eff;
+    color: white;
 }
 
 .userName {
