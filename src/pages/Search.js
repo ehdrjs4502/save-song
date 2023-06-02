@@ -4,6 +4,7 @@ import AddBtn from '../components/AddBtn';
 import Menu from "../components/Menu";
 import '../css/search.css';
 import search from '../img/search.png';
+import { Link } from "react-router-dom";
 
 function Search() {
     const [inputText, setInputText] = useState('');
@@ -21,7 +22,7 @@ function Search() {
 
     async function getMusicList() { // 노래 가져오는 함수
         // API_URL 설정
-        const API_URL = `/2.0/?method=track.search&track=${inputText}&limit=10&api_key=5ecc7be00cd4341e93c34fac91fa0132&format=json`
+        const API_URL = `/2.0/?method=track.search&track=${inputText}&limit=10&api_key=&format=json`
         await axios.get(API_URL)
         .then((res) => {
             setSearchList(searchList => []); // searchList를 비워준다.
@@ -47,8 +48,8 @@ function Search() {
 
             {searchList.length == 0 ? '' : 
                 <div className="listBox">
-                    <div>
-                        <table className="searchTable">
+                    <div style={{width:"60%"}}>
+                        <table className="searchTable" style={{width:"100%"}}>
                             <tr>
                                 <th >곡제목</th>
                                 <th >가수명</th>
@@ -57,7 +58,7 @@ function Search() {
                         {searchList.map((item) => {
                             return (         
                                 <tr>
-                                    <td>{truncate(item.name,30)}</td>
+                                    <td><Link to={`/Song/${item.name.replace(/ /g, '')} ${item.artist.replace(/ /g, '')}`}>{truncate(item.name,30)}</Link></td>
                                     <td>{truncate(item.artist,20)} </td>
                                     <td><AddBtn name = {item.name} artist = {item.artist}/></td>
                                 </tr>

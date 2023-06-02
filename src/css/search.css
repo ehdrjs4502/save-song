@@ -47,7 +47,6 @@
 }
 
 .searchTable {
-    width: 1000px;
     margin-top: 30px;
     text-align: center;
     border-collapse: collapse;
@@ -61,4 +60,8 @@
 .searchTable td {
     border-bottom: 1px solid rgba(46, 46, 46, 0.366);
     padding: 10px 30px 10px 30px;
+}
+
+.searchTable tr:not(:first-child):hover {
+    background-color: rgb(230, 230, 230);
 }

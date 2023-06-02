@@ -40,7 +40,7 @@ function AgeGroupTop(props) {
             <Swiper slidesPerView="1"
                         mousewheel={true}
                         direction="vertical"
-                        autoplay={{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+                        autoplay={{ delay: 1000, disableOnInteraction: false, pauseOnMouseEnter: true }}
                         modules={[Autoplay]}
                         loop={true}
                         style={{width:350, height:30, marginTop:12}}>

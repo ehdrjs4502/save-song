@@ -12,7 +12,7 @@
     padding: 10px 30px 10px 30px;
 }
 
-.popularTable tr:not(:first-of-type):hover {
+.popularTable tbody tr:hover {
     background-color: rgb(230, 230, 230);
 }
 
@@ -28,8 +28,4 @@
 .topTable td {
     border-bottom: 1px solid rgba(46, 46, 46, 0.366);
     padding: 3px 5px 3px 5px;
-}
-
-.topTable tr:not(:first-of-type):hover {
-    background-color: rgb(230, 230, 230);
 }

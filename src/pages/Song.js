@@ -12,7 +12,7 @@ function Song({match}) {
 
     async function getMusicList(keyword) { // 노래 가져오는 함수
         const search = keyword + " 가사";
-        const API_URL = `https://www.googleapis.com/youtube/v3/search?part=id&q=${search}&maxResults=1&fields=items(id(videoId))&key=AIzaSyD6uIASZdxDE7ynF7G5fqaKzW4MnkJHBm0`
+        const API_URL = `https://www.googleapis.com/youtube/v3/search?part=id&q=${search}&maxResults=1&fields=items(id(videoId))&key=`
         await axios.get(API_URL)
         .then((res) => {
             console.log(res);
