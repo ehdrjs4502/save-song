@@ -71,8 +71,8 @@ function MyInfo() {
         <div>
             <Menu/>
             
-            <div className="infoBox">
-                <div className="headerBox">
+            <div className="info-box">
+                <div className="header-box">
                     <div className="header">
                         <span>{name}</span>
                         <span onClick={() => setFollowerIsOpen(true)}>팔로워 : {followerList.length}</span> 

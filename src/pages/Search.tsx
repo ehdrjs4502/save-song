@@ -29,7 +29,7 @@ function Search() {
         setSearchAttempted(true);
         setLoading(true);
         // API_URL 설정
-        const API_URL = `/2.0/?method=track.search&track=${inputText}&limit=10&api_key=&format=json`
+        const API_URL = `/2.0/?method=track.search&track=${inputText}&limit=10&api_key=5ecc7be00cd4341e93c34fac91fa0132&format=json`
         await axios.get(API_URL)
         .then((res) => {
             setSearchList(searchList => []); // searchList를 비워준다.
@@ -51,25 +51,25 @@ function Search() {
     return(
         <div>
             <div><Menu/></div>
-            <div className="searchBox">
-                <div className="searchForm">
-                    <input type="search" className="searchInput" placeholder="노래명 또는 가수명 입력" onKeyPress={handleOnKeyPress} onChange={onChangeSearch}/> 
-                    <button type="button" className="searchBtn" onClick={getMusicList}><img className="searchImg" alt="searchImg" src={search}/></button>
+            <div className="search-box">
+                <div className="search-form">
+                    <input type="search" className="search-input" placeholder="노래명 또는 가수명 입력" onKeyPress={handleOnKeyPress} onChange={onChangeSearch}/> 
+                    <button type="button" className="search-btn" onClick={getMusicList}><img className="search-img" alt="searchImg" src={search}/></button>
                 </div>
             </div> 
 
             {loading ? ( // 로딩 중일 때 로딩 스피너 표시
-                <div style={{display:"flex", justifyContent:"center", marginTop:"100px"}}>
+                <div className="loading-box">
                     <FadeLoader color="#2E2EFE" loading={loading} />
                 </div>
             ) : searchList.length === 0 && searchAttempted ? (
-                <div style={{display:"flex", justifyContent:"center", marginTop:"100px"}}>
+                <div className="loading-box">
                     <h3>검색 결과가 없습니다...</h3>
                 </div>
             ) : searchList.length > 0 ? (
-                <div className="listBox">
-                    <div style={{ width: "60%" }}>
-                        <table className="searchTable" style={{ width: "100%" }}>
+                <div className="list-box">
+                    <div>
+                        <table className="search-table">
                             <thead>
                                 <tr>
                                     <th>곡제목</th>

@@ -21,10 +21,10 @@ function Menu() {
     }
 
     return(
-        <div className="menuBox" style={{borderBottom:'1px solid black'}}>
-            <div className="headerLogo">
+        <div className="menu-box">
+            <div className="header-logo">
                 <Link to="/Main">
-                    <img className="logo_img" src={mic}/>
+                    <img className="logo-img" src={mic}/>
                     <h2>Save Song !</h2>
                 </Link>
             </div>
@@ -39,9 +39,9 @@ function Menu() {
                     <Link style={pathName === "/MyInfo" ? selected : {color : 'black'}} to="/MyInfo"><li>My Info</li></Link>
                 </ul>
             </div>
-            <div className="user">
-                <span className="userName">{userName}</span> 
-                <button className="logoutBtn" onClick={onClickLogOut}>로그아웃</button>
+            <div className="user-box">
+                <span className="user-name">{userName}</span> 
+                <button className="logout-btn" onClick={onClickLogOut}>로그아웃</button>
             </div>
             
         </div>

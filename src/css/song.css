@@ -1,0 +1,11 @@
+.youtube-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.like-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import AddBtn from "./AddBtn";
 import { Link } from "react-router-dom";
+import '../css/song-list.css'
 
 interface SongListProps {
     id: string;
@@ -57,12 +58,12 @@ function SongList(props: SongListProps) {
     return(
         <div>
             <div>
-                <h2 className="songListTitle">{name}님의 노래 목록</h2>
+                <h2 className="song-list-title">{name}님의 노래 목록</h2>
             </div>
-            <div className="songTableBox">
+            <div className="song-list-box">
                 {songList.length === 0 ? (<div><h3>노래를 추가해주세요~</h3></div>) : 
-                (<div style={{overflowX:"auto", width:"80%"}}>
-                    <table className="songTable" style={{textAlign:'center', width:"100%"}}>
+                (<div className="song-table-box">
+                    <table className="song-table">
                         <thead>
                             <tr>
                                 <th>번호</th>
@@ -81,7 +82,7 @@ function SongList(props: SongListProps) {
                                         
                                         <td>
                                             {userID === loginID ? 
-                                                <button className="delSongBtn" onClick={() => onClickDelBtn(item.name, item.artist)}>X</button> : 
+                                                <button className="del-song-btn" onClick={() => onClickDelBtn(item.name, item.artist)}>X</button> : 
                                                 <AddBtn name = {item.name} artist = {item.artist}></AddBtn>}
                                         </td>
                                     </tr>

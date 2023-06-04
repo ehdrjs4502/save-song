@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../css/likeBtn.css";
+import "../css/like-btn.css";
 
 interface LikeBtnProps {
     songTitle: string;
@@ -77,7 +77,7 @@ function LikeBtn({ songTitle, songArtist, userID }: LikeBtnProps) {
 
     return (
     <div>
-        <button className={liked ? "unlikeBtn" : "likeBtn"}  onClick={() => onClickLikeBtn()}>
+        <button className={liked ? "unlike-btn" : "like-btn"}  onClick={() => onClickLikeBtn()}>
             {liked ? <span>♥</span> : <span>♡</span>} {likeCount}
         </button>
         

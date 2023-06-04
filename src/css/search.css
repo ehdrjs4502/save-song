@@ -1,15 +1,15 @@
-.searchBox {
+.search-box {
     display: flex;
     justify-content: center;
 }
 
-.searchForm {
+.search-form {
     position:relative;
     width: 500px;
     margin-top: 5%;
 }
 
-.searchInput {
+.search-input {
     outline:0;
     border: 1px solid black;
     border-radius: 20px;
@@ -20,7 +20,7 @@
     font-weight:bold;
 }
 
-.searchBtn {
+.search-btn {
     position:absolute;
     top:50%;
     right:10px;
@@ -29,39 +29,50 @@
     background-color: transparent;
 }
 
-.searchImg {
+.search-img {
     width: 20px;
 }
 
-.searchImg:hover {
+.search-img:hover {
     cursor: pointer;
 }
 
-.listBox {
+.list-box {
     display: flex;
     justify-content: center;
 }
 
-.listUl {
+.list-box div {
+    width: 65%;
+}
+
+.list-ul {
     text-decoration: none;
 }
 
-.searchTable {
+.search-table {
     margin-top: 30px;
     text-align: center;
     border-collapse: collapse;
+    width: 100%;
 }
 
-.searchTable th {
+.search-table th {
     border-bottom: 1.5px solid rgb(0, 0, 0);
     padding: 10px 30px 10px 30px;  
 }
 
-.searchTable td {
+.search-table td {
     border-bottom: 1px solid rgba(46, 46, 46, 0.366);
     padding: 10px 30px 10px 30px;
 }
 
-.searchTable tr:not(:first-child):hover {
+.search-table tr:not(:first-child):hover {
     background-color: rgb(230, 230, 230);
+}
+
+.loading-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
 }

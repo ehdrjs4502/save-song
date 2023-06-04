@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { ChangeEvent, useState } from "react";
 import FollowBtn from "../components/FollowBtn";
 import { Link } from "react-router-dom";
-import '../css/searchUser.css';
+import '../css/search-user.css';
 import search from '../img/search.png';
 
 type SearchList = {id: string, name: string};
@@ -42,15 +42,15 @@ function SearchUser() {
             <div>
                 <Menu/>
             </div>
-            <div className="searchBox">
-                <div className="searchForm">
-                    <input type="search" className="searchInput" placeholder="유저 아이디 또는 유저명 입력" onKeyPress={handleOnKeyPress} onKeyUp={getUserList} onChange={onChangeSearch}/> 
-                    <button type="button" className="searchBtn" onClick={getUserList}><img className="searchImg" alt="searchImg" src={search}/></button>
+            <div className="search-box">
+                <div className="search-form">
+                    <input type="search" className="search-input" placeholder="유저 아이디 또는 유저명 입력" onKeyPress={handleOnKeyPress} onKeyUp={getUserList} onChange={onChangeSearch}/> 
+                    <button type="button" className="search-btn" onClick={getUserList}><img className="search-img" alt="searchImg" src={search}/></button>
                 </div>
             </div>
 
-            <div className = "userListBox">
-                <table className = "userListTable">
+            <div className = "user-list-box">
+                <table className = "user-list-table">
                 {searchList.map((item) => {
                     return (
                         <tr>

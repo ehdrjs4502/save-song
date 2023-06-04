@@ -1,4 +1,4 @@
-.LoginBody {
+.login-body {
     background-color: #6981FF;
     text-align: center;
     display : flex;
@@ -7,35 +7,38 @@
     height: 100vh;
 }
 
-.LoginBox {
+.login-box {
     background-color: white;
     width: 500px;
     height: 540px;
     border-radius: 30px;
 }
 
-.HeaderLogo {
+.header-logo {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100px;
-    margin-bottom: 30px;
 }
 
-.MicImg {
+.mic-img {
     width: 40px;
     height: 40px;
     margin-right: 20px;
 }
 
-.Title {
+.title {
     color: black;
     text-align: center;
     font-size: 40px;
     display: inline;
 }
 
-.InputBox {
+.form-box {
+    margin-top: 30px;
+}
+/* 
+.input-box {
     width: 370px;
     height: 50px;
     font-size: 15px;
@@ -47,11 +50,11 @@
     margin-top: 30px;
   }
 
-.InputBox:focus {
+.input-box:focus {
     outline: 2px solid blue;
 }
 
-.LoginBtn { 
+.login-btn { 
     width: 120px;
     height: 50px;
     background: #6981FF;
@@ -63,22 +66,22 @@
     margin-top: 40px;
 }
 
-.LoginBtn:hover {
+.login-btn:hover {
     outline: 1px solid black;
     background-color: rgb(80, 80, 254);
     cursor: pointer;
-}
+} */
 
-.SignDiv {
+.sign-div {
     margin-top: 40px;
     font-weight: bold;
 }
 
-.SignDiv span {
+.sign-div span {
     padding-right: 15px;
 }
 
-.SignDiv a {
+.sign-div a {
     color: blue;
     text-decoration: none;
 }

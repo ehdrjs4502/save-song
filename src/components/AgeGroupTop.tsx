@@ -4,6 +4,7 @@ import AddBtn from "./AddBtn";
 import { Link } from "react-router-dom";
 import { Autoplay, } from "swiper";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import '../css/age-group-top.css'
 
 // Import Swiper styles
 import 'swiper/css';
@@ -41,20 +42,21 @@ function AgeGroupTop(props: AgeGroupTopProps) {
 
 
     return (
-        <div style={{float:"right", position:"absolute", right:"5%"}}>
-            <div style={{display:"flex", alignItems:"center", fontSize:13}}>
+        <div className="box-group-top">
+            <div className="group-top">
                 <h3>{ageGroup}대 {gender}성 Top 3</h3>
-                <Swiper slidesPerView={1}
-                            mousewheel={true}
-                            direction="vertical"
-                            autoplay={{ delay: 1000, disableOnInteraction: false, pauseOnMouseEnter: true }}
-                            modules={[Autoplay]}
-                            loop={true}
-                            style={{width:350, height:30, marginTop:12}}>
+                <Swiper 
+                        className="swiper"
+                        slidesPerView={1}
+                        mousewheel={true}
+                        direction="vertical"
+                        autoplay={{ delay: 1000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+                        modules={[Autoplay]}
+                        loop={true}>
                     {topList.map((item, idx) => {
                         return (
                             <SwiperSlide key={idx}>
-                                <div style={{display:"flex", justifyContent:"space-around"}}>
+                                <div className="swiper-item">
                                     <span>{idx + 1}</span>
                                     <span>
                                         <Link to={`/Song/${item.name.replace(/ /g, '')} ${item.artist.replace(/ /g, '')}`}>

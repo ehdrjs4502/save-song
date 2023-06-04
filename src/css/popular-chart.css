@@ -1,0 +1,39 @@
+.popular-chart-box {
+    display: flex; 
+    align-items: center; 
+    flex-direction: column;
+    margin-top: 45px;
+}
+
+.popular-table-box {
+    width: 85%;
+    overflow-x: auto;
+}
+
+.title-box {
+    align-self: flex-start;
+    margin-left: 9%;
+}
+
+.popular-table {
+    text-align: center;
+    width: 100%;
+}
+
+.popular-table {
+    border-collapse: collapse;
+  }
+
+.popular-table th {
+    border-bottom: 1.5px solid rgb(0, 0, 0);
+    padding: 10px 30px 10px 30px;  
+}
+
+.popular-table td {
+    border-bottom: 1px solid rgba(46, 46, 46, 0.366);
+    padding: 10px 30px 10px 30px;
+}
+
+.popular-table tbody tr:hover {
+    background-color: rgb(230, 230, 230);
+}

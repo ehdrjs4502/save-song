@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import '../css/followModal.css'
-import "../css/delbtn.css";
+import '../css/follow-modal.css'
+import "../css/del-btn.css";
 
 
 interface FollowersProps {
@@ -34,7 +34,7 @@ function Followers(props: FollowersProps) {
                                             {item.name}
                                         </Link>
                                     </td>
-                                    <td><button className="delBtn">삭제</button></td>
+                                    <td><button className="del-btn">삭제</button></td>
                                 </tr>
                             )
                         })}

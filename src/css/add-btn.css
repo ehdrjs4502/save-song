@@ -16,7 +16,7 @@
     color: red;
 }
 
-.smallBtn {
+.small-btn {
     background-color: #0075FF;
     color: #fff;
     border:none; 
@@ -27,7 +27,7 @@
     font-size: 15px;
 }
 
-.smallBtn:hover {
+.small-btn:hover {
     cursor: pointer;
     font-size: 18px;
     background-color: #0044ff;

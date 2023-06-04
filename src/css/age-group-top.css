@@ -1,0 +1,22 @@
+.box-group-top {
+    float: right;
+    position: absolute;
+    right: 5%;
+}
+
+.group-top {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+}
+
+.swiper {
+    width: 350px;
+    height: 30px;
+    margin-top: 12px;
+}
+
+.swiper-item {
+    display: flex;
+    justify-content: space-around;
+}

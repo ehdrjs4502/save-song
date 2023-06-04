@@ -20,7 +20,7 @@ router.post('/', (req, res) => { // 회원가입 하라고 왔을 때
 
 })
 
-router.post('/checkId', function (req, res) {  // 아이디 체크 하라고 왔을 때
+router.post('/checkID', function (req, res) {  // 아이디 체크 하라고 왔을 때
     const user_id = req.body.id;     //req는 데이터를 받은건데 ①에서 data객체를 보내줫었다
   
     console.log(req.body.id);

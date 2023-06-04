@@ -1,4 +1,4 @@
-.headerBox {
+.header-box {
     width: 70%;
     margin: 0 auto;
 }
@@ -19,51 +19,4 @@ a {
 
 .header :nth-child(n+2):hover {
     cursor: pointer;
-}
-
-.songTableBox {
-    display: flex;
-    justify-content: center;
-}
-
-.songTable {
-    margin-top: 30px;
-    border-collapse: collapse;
-  }
-
-.songTable th {
-    border-bottom: 1.5px solid rgb(0, 0, 0);
-    padding: 10px 30px 10px 30px;  
-}
-
-.songTable td {
-    border-bottom: 1px solid rgba(46, 46, 46, 0.366);
-    padding: 10px 30px 10px 30px;
-}
-
-.songTable tr:not(:first-of-type):hover {
-    background-color: rgb(230, 230, 230);
-}
-
-.songListTitle {
-    text-align: center;
-    font-size: 20px;
-    margin-top: 30px;
-}
-
-.delSongBtn {
-    background-color: #ff0000;
-    color: #fff;
-    border:none; 
-    border-radius:10px; 
-    min-height: 30px;
-    min-width: 50px;
-    font-weight: bold;
-    font-size: 10px;
-}
-
-.delSongBtn:hover {
-    cursor: pointer;
-    font-size: 15px;
-    background-color: #d30000;
 }

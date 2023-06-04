@@ -1,4 +1,4 @@
-.SignUpBody {
+.signup-body {
     background-color: #6981FF;
     text-align: center;
     display : flex;
@@ -7,29 +7,62 @@
     height: 100vh;
 }
 
-.SignUpBox {
+.signup-box {
     background-color: white;
     width: 520px;
-    height: 650px;
+    height: 700px;
     border-radius: 30px;
 }
 
-.HeaderLogo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    margin-bottom: 30px;
+.gender-radio {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.gender-radio input[type=radio]{
+    display: none;
+    margin-left: 10px;
+}
+.gender-radio input[type=radio]+label{
+    display: inline-block;
+    cursor: pointer;
+    height: 33px;
+    width: 100px;    
+    border-radius: 15px;
+    font-weight:bold;
+    font-size: 15px;
+    padding-top: 10px;
 }
 
-.Title {
+.gender-radio input[type=radio]+label{
+    background-color: rgb(233, 233, 233);
+    color: #333;
+    margin-right: 10px;
+}
+.gender-radio input[type=radio]:checked+label{
+    background-color: #3e5fff;
+    color: #fff;
+}
+
+.signup-btn-box {
+    margin-top: 30px;
+}
+
+.go-to-login {
+    margin-top: 15px;
+}
+
+.go-to-login a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 12px;
     color: black;
-    text-align: center;
-    font-size: 40px;
-    display: inline;
 }
 
-.InputBox {
+.go-to-login a:hover {
+    color: #6981FF;
+}
+
+/* .input-box {
     width: 370px;
     height: 45px;
     font-size: 15px;
@@ -41,11 +74,11 @@
     margin-top: 20px;
   }
 
-.InputBox:focus {
+.input-box:focus {
     outline: 2px solid blue;
 }
 
-.SignUpBtn { 
+.signup-btn { 
     width: 120px;
     height: 50px;
     background: #6981FF;
@@ -58,58 +91,8 @@
     margin-bottom: 15px;
 }
 
-.SignUpBtn:hover {
+.signup-btn:hover {
     cursor: pointer;
     background-color: rgb(80, 80, 254);
-}
+} */
 
-.GenderRadio {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-.GenderRadio input[type=radio]{
-    display: none;
-    margin-left: 10px;
-}
-.GenderRadio input[type=radio]+label{
-    display: inline-block;
-    cursor: pointer;
-    height: 33px;
-    width: 100px;    
-    border-radius: 15px;
-    font-weight:bold;
-    font-size: 15px;
-    padding-top: 10px;
-}
-
-.GenderRadio input[type=radio]+label{
-    background-color: rgb(233, 233, 233);
-    color: #333;
-    margin-right: 10px;
-}
-.GenderRadio input[type=radio]:checked+label{
-    background-color: #6981FF;
-    color: #fff;
-}
-
-.checkIdDiv {
-    height: 10px;
-}
-
-.checkId {
-    margin-top: 15px;
-    color: red;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.GoToLogin {
-    margin-top: 10px;
-}
-
-.GoToLogin a{
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 12px;
-    color: black;
-}

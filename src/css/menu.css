@@ -1,12 +1,13 @@
-.menuBox {
+.menu-box {
     display: flex;
     justify-content: space-between;
 	align-items : center;
     padding: 0px 40px 0px 40px;
     background-color: #d8e8ff;
+    border-bottom: 1px solid rgb(132, 132, 132);
 }
 
-.headerLogo a {
+.header-logo a {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,15 +17,15 @@
     color: black;
 }
 
-.logo_img {
+.logo-img {
     width: 50px;
 }
 
-.headerLogo a:hover {
+.header-logo a:hover {
     color: rgb(54, 84, 255);
 }
 
-.headerLogo a h2 {
+.header-logo a h2 {
     margin-left: 30px;
 }
 
@@ -51,13 +52,13 @@
     color: white;
 }
 
-.userName {
+.user-name {
     font-weight: bold;
     font-size: 15px;
     margin-right: 10px;
 }
 
-.logoutBtn {
+.logout-btn {
     background-color: #3d7eff;
     color: #fff;
     border:none; 
@@ -69,7 +70,7 @@
     padding: 10px;
 }
 
-.logoutBtn:hover {
+.logout-btn:hover {
     cursor: pointer;
     background-color: #0055ff;
 }
@@ -79,16 +80,16 @@
 }
 
 @media screen and (max-width: 972px) {
-    .menuBox {
+    .menu-box {
         flex-direction: column;
         align-items: flex-start;
     }
 
-    .headerLogo a {
+    .header-logo a {
         font-size: 13px;
     }
 
-    .logo_img {
+    .logo-img {
         width: 30px;
     }
 
@@ -109,7 +110,7 @@
         font-size: 15px;
     }
 
-    .user {
+    .user-box {
         position: absolute;
         right: 10px;
         margin-top: 30px;

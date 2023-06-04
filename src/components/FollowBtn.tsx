@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import '../css/followBtn.css';
+import '../css/follow-btn.css';
 
 interface FollowBtnProps {
     toID: string;
@@ -62,7 +62,7 @@ function FollowBtn(props: FollowBtnProps) {
     }
 
     return(
-        <button className={isFollowing ? "unfollowBtn" : "followBtn"} onClick={() => onClickFollowBtn()}>{isFollowing ? "언팔로우" : "팔로우"}</button>
+        <button className={isFollowing ? "unfollow-btn" : "follow-btn"} onClick={() => onClickFollowBtn()}>{isFollowing ? "언팔로우" : "팔로우"}</button>
     )
 };
 

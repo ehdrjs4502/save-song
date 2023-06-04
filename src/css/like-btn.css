@@ -1,20 +1,21 @@
-.followBtn {
-    background-color: #0075FF;
-    color: #fff;
+.like-btn {
+    color: black;
     border:none; 
     border-radius:10px; 
     min-height: 40px;
     min-width: 55px;
     font-weight: bold;
-    font-size: 12px;
+    background-color: white;
+    border: 1.5px solid rgb(113, 113, 113);
+    font-size: 15px;
 }
 
-.followBtn:hover {
+.like-btn:hover {
     cursor: pointer;
-    background-color: #0044ff;
+    background-color: #ff4b4b;
 }
 
-.unfollowBtn {
+.unlike-btn {
     background-color: #ff4b4b;
     color: #fff;
     border:none; 
@@ -22,10 +23,11 @@
     min-height: 40px;
     min-width: 55px;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 15px;
+    border: 1.5px solid rgb(252, 172, 172);
 }
 
-.unfollowBtn:hover {
+.unlike-btn:hover {
     background-color: #c72525;
     cursor: pointer;
 }

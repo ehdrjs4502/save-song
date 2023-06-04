@@ -1,7 +1,7 @@
 import axios from "axios"
 import React, { useEffect, useState, useMemo } from "react"
 import AddBtn from './AddBtn';
-import '../css/table.css'
+import '../css/popular-chart.css'
 import { Link } from "react-router-dom";
 
 type SongList = {popular_rank: number, name: string, artist: string};
@@ -25,10 +25,10 @@ function PopularChart() {
     }, []);
 
     return(
-        <div style={{display:"flex", alignItems:"center", flexDirection:"column", marginTop:"45px"}}>
-            <div style={{alignSelf:"flex-start", marginLeft:"9%"}}><h2>인기차트</h2></div>
-            <div style={{width:"85%", overflowX:"auto"}}>
-                <table className="popularTable" style={{textAlign:'center', width:"100%"}}>
+        <div className="popular-chart-box">
+            <div className="title-box"><h2>인기차트</h2></div>
+            <div className="popular-table-box">
+                <table className="popular-table">
                     <thead>
                         <tr>
                             <th>순위</th>

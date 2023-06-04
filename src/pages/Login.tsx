@@ -52,13 +52,13 @@ function Login() {
     }
 
     return(
-        <div className="LoginBody">
-            <div className="LoginBox">
-                <div className="HeaderLogo">
-                    <img src={mic} className="MicImg"/>
-                    <h1 className="Title">Save Song !</h1>
+        <div className="login-body">
+            <div className="login-box">
+                <div className="header-logo">
+                    <img src={mic} className="mic-img"/>
+                    <h1 className="title">Save Song !</h1>
                 </div>
-                <div>
+                <div className="form-box">
                     <Box component="form" sx={{
                             '& .MuiTextField-root': { m: 2, width: '42ch', height: '6ch'},
                         }}
@@ -69,7 +69,7 @@ function Login() {
                             </div>
                             <Button variant="contained" onClick={onClickLogin} sx={{marginTop: 3}}>로그인</Button>
                     </Box>
-                    <div className="SignDiv"><span>아직 계정이 없으신가요?</span><Link to="/SignUp" className="SignUpLink">회원가입</Link></div>
+                    <div className="sign-div"><span>아직 계정이 없으신가요?</span><Link to="/SignUp" className="SignUpLink">회원가입</Link></div>
                         {/* <div><input className="InputBox" type="text" name="id" size="20" placeholder="ID" ref={idRef}></input></div>
                         <div><input className="InputBox" type="password" name="id" size="20" placeholder="PASSWORD" ref={pwRef} onKeyPress={handleOnKeyPress}></input></div>
                         <div><input className="LoginBtn" type="button" value="로그인" ></input></div> */}

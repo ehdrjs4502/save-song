@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import { useParams } from "react-router-dom";
 import LikeBtn from "../components/LikeBtn";
+import '../css/song.css'
 
 function Song({match}: {match:string}) {
     const [SongID, SetSongID] = useState<string>(""); // 유튜브 영상 id
@@ -12,7 +13,7 @@ function Song({match}: {match:string}) {
 
     async function getMusicList(keyword: string) { // 노래 가져오는 함수
         const search = keyword + " 가사";
-        const API_URL = `https://www.googleapis.com/youtube/v3/search?part=id&q=${search}&maxResults=1&fields=items(id(videoId))&key=`
+        const API_URL = `https://www.googleapis.com/youtube/v3/search?part=id&q=${search}&maxResults=1&fields=items(id(videoId))&key=AIzaSyD6uIASZdxDE7ynF7G5fqaKzW4MnkJHBm0`
         await axios.get(API_URL)
         .then((res) => {
             console.log(res);
@@ -27,10 +28,10 @@ function Song({match}: {match:string}) {
     return (
         <div>
             <Menu/>
-            <div className="youtubeBox" style={{display:"flex", justifyContent:"center", marginTop:"30px"}}>
+            <div className="youtube-box">
                 <ReactPlayer url={`https://www.youtube.com/watch?v=${SongID}`} playing controls/>
             </div>
-            <div className="likeBox" style={{display:"flex", justifyContent:"center", marginTop:"30px"}}>
+            <div className="like-box">
                 <LikeBtn songTitle={title!.split(" ")[0]} songArtist={title!.split(" ")[1]} userID={userInfo['id']}/>
             </div>
         </div>

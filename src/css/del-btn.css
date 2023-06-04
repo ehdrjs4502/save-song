@@ -1,4 +1,4 @@
-.delBtn {
+.del-btn {
     background-color: #ff4b4b;
     color: #fff;
     border:none; 
@@ -9,7 +9,7 @@
     font-size: 12px;
 }
 
-.delBtn:hover {
+.del-btn:hover {
     background-color: #c72525;
     cursor: pointer;
 }

@@ -12,7 +12,7 @@ function SignUp() {
     const pwRef = useRef<HTMLInputElement>(null);
     const pwCheckRef = useRef<HTMLInputElement>(null);
     const [gender, setGender] = useState("남");
-    const [idCheck, setIdCheck] = useState(true);
+    const [idCheck, setIDCheck] = useState(true);
     const [checkErr, SetCheckErr] = useState("");
 
     const [num, setNum] = useState<string>();
@@ -25,10 +25,10 @@ function SignUp() {
     };
 
     function checkId() {
-        axios.post("http://localhost:3001/signUp/checkId", {
+        axios.post("http://localhost:3001/signUp/checkID", {
             id : idRef.current?.value,
         }).then((res) => {
-            setIdCheck(res.data.tf)
+            setIDCheck(res.data.tf)
             if(res.data.tf) {
                 // console.log("사용 가능한 ID입니다",idRef.current.value);
                 SetCheckErr("");
@@ -114,8 +114,8 @@ function SignUp() {
     }
 
     return(
-        <div className="SignUpBody">
-            <div className="SignUpBox">
+        <div className="signup-body">
+            <div className="signup-box">
                 <div><h1>SignUp !</h1></div>
                 <div>
                     <Box component="form" sx={{
@@ -127,29 +127,31 @@ function SignUp() {
                             <TextField id="outlined-basic" label="ID" type="text" variant="outlined" onChange={checkId} error={!idCheck} helperText={!idCheck ? "중복된 아이디입니다. 다른 ID를 사용해주세요" : ""} inputRef={idRef}/>
                             <TextField id="filled-password-input" label="Password" type="password" variant="outlined"  inputRef={pwRef}/>
                             <TextField id="filled-password-input" label="Password Check" type="password" variant="outlined" inputRef={pwCheckRef}/>
-                            <div className="GenderRadio">
+                            <div className="gender-radio">
                                 <input type="radio" name="gender" id="man" value="남" defaultChecked onChange={onClickGender}/><label htmlFor="man">남자</label>
                                 <input type="radio" name="gender" id="woman" value="여" onChange={onClickGender}/><label htmlFor="woman">여자</label>
                             </div>
                             <TextField id="outlined-basic" label="BirthDay" helperText="ex)20001130" type="text" variant="outlined" inputRef={birthdayRef} inputProps={{maxLength : 8}} onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)} value={num || ""}/>
                         </div>
-                        <Button variant="contained" onClick={onClickSignUp}>회원가입</Button>
+                        <div className="signup-btn-box">
+                            <Button variant="contained" onClick={onClickSignUp}>회원가입</Button>
+                        </div>
                     </Box>
-                    <div className="GoToLogin">
+                    <div className="go-to-login">
                         <span><Link to="/">로그인 페이지로 돌아가기</Link></span>
                     </div>
                     {/* <form>
-                        <div><input className="InputBox" type="text" name="name" size="20" placeholder="NAME" ref={nameRef}></input></div>
+                        <div><input className="input-box" type="text" name="name" size="20" placeholder="NAME" ref={nameRef}></input></div>
                         <div>
-                            <input className="InputBox" type="text" name="id" size="20" placeholder="ID" onChange={checkId} ref={idRef}></input>
+                            <input className="input-box" type="text" name="id" size="20" placeholder="ID" onChange={checkId} ref={idRef}></input>
                         </div>
                         
-                        <div><input className="InputBox" type="password" name="pw" size="20" placeholder="PASSWORD" ref={pwRef}></input></div>
-                        <div><input className="InputBox" type="password" name="pwCheck" size="20" placeholder="PASSWORD CHECK" ref={pwCheckRef}></input></div>
+                        <div><input className="input-box" type="password" name="pw" size="20" placeholder="PASSWORD" ref={pwRef}></input></div>
+                        <div><input className="input-box" type="password" name="pwCheck" size="20" placeholder="PASSWORD CHECK" ref={pwCheckRef}></input></div>
                         
                         <div>
-                            <input className="InputBox" type="text" name="birthday" size="20" placeholder="BirthDay ex)20001130" ref={birthdayRef}></input>
-                            <div><input className="SignUpBtn" type="button" value="회원가입" onClick={onClickSignUp}></input></div>
+                            <input className="input-box" type="text" name="birthday" size="20" placeholder="BirthDay ex)20001130" ref={birthdayRef}></input>
+                            <div><input className="signup-btn" type="button" value="회원가입" onClick={onClickSignUp}></input></div>
                             
                         </div>
                     </form> */}

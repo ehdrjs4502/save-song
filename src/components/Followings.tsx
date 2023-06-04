@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import '../css/followModal.css'
+import '../css/follow-modal.css'
 import FollowBtn from "./FollowBtn";
 
 interface FollowingsProps {
@@ -26,18 +26,18 @@ function Followings(props: FollowingsProps) {
     return(
         <div>
             <div>
-                <div className="headerTitle">
+                <div className="header-title">
                     <h2>팔로잉</h2>
                 </div>
                 <hr/>
                 <div>
-                    <table className="followTable">
+                    <table className="follow-table">
                         <thead></thead>
                         <tbody>
                         {followList.map((item, idx) => {
                             return(
                                 <tr key={idx}>
-                                    <td className="userID">
+                                    <td className="user-id">
                                         <Link to={`/UserInfo/${item.to_user}`}>
                                             {item.to_user}
                                             <br/>

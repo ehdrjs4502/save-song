@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React from 'react';
-import '../css/addbtn.css'
+import '../css/add-btn.css'
 
 interface AddBtnProps{
     size ?:'small' | 'large';
@@ -43,7 +43,7 @@ function AddBtn(props: AddBtnProps) {
     }
 
     return (
-        <button className={props.size == 'small' ? 'smallBtn' : 'btn'} onClick={() => onClickAddBtn(props.name, props.artist)}>♥</button>
+        <button className={props.size == 'small' ? 'small-btn' : 'btn'} onClick={() => onClickAddBtn(props.name, props.artist)}>♥</button>
     )
 }
 
