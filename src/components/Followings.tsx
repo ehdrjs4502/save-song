@@ -1,18 +1,27 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import '../css/followModal.css'
 import FollowBtn from "./FollowBtn";
 
-function Followings(props) {
-    const [followList, setFollowList] = useState([]);
+interface FollowingsProps {
+    followList: [];
+    fromID: string;
+}
+
+type FollowList = {to_user: string, toID: string, name: string};
+
+function Followings(props: FollowingsProps) {
+    
+    const [followList, setFollowList] = useState<FollowList[]>([]);
 
     useEffect(() => {
         setFollowList(props.followList);
     }, [props.followList]);
 
     console.log(followList);
+    const id = props.fromID;
 
-    const id = props.fromId;
+    console.log("id", props.fromID);
 
     return(
         <div>
@@ -36,14 +45,13 @@ function Followings(props) {
                                         </Link>
                                     </td>
                                     <td>
-                                        <FollowBtn toId = {item.to_user} fromId = {id}></FollowBtn>
+                                        <FollowBtn toID = {item.to_user} fromID = {id}></FollowBtn>
                                     </td>
                                 </tr>
                             )
                         })}
                         </tbody>
                     </table>
-                    
                 </div>
             </div>
         </div>

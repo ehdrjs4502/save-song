@@ -1,12 +1,17 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import '../css/followModal.css'
 import "../css/delbtn.css";
 
-function Followers(props) {
-    const [followerList, setFollowerList] = useState(props.followerList);
 
-    console.log(followerList);
+interface FollowersProps {
+    followerList: [];
+}
+
+type FollowList = { from_user: string; name: string };
+
+function Followers(props: FollowersProps) {
+    const [followerList, setFollowerList] = useState<FollowList[]>(props.followerList);
     
     return(
         <div>

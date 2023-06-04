@@ -8,7 +8,7 @@ const db = mysql.createConnection(dbconfig); // mysql 내 db 연동
 router.post('/isFollow', (req, res) => { // 팔로우 하라고 왔을 때
     const fromUser = req.body.fromUser; // 팔로우 거는 사람
     const toUser = req.body.toUser; // 팔로우 받는 사람
-
+    
     const sqlQuery = "select * from follow where from_user = ? and to_user = ?;"; // 
     db.query(sqlQuery, [fromUser, toUser], (err, result) => {
         res.send(result);

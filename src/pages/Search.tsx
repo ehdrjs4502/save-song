@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, ChangeEvent } from "react";
 import AddBtn from '../components/AddBtn';
 import Menu from "../components/Menu";
 import '../css/search.css';
@@ -7,17 +7,19 @@ import search from '../img/search.png';
 import { Link } from "react-router-dom";
 import { FadeLoader } from 'react-spinners';
 
+type SearchList = {name: string, artist: string};
+
 function Search() {
     const [inputText, setInputText] = useState(''); // 검색 텍스트
-    const [searchList, setSearchList] = useState([]); // 검색 결과 목록
+    const [searchList, setSearchList] = useState<SearchList[]>([]); // 검색 결과 목록
     const [loading, setLoading] = useState(false); // 로딩 상태 추가
     const [searchAttempted, setSearchAttempted] = useState(false); // 검색 했는지 상태
 
-    function onChangeSearch(e) { // Search 인풋 태그에 변화가 생길때
+    function onChangeSearch(e: ChangeEvent<HTMLInputElement>) { // Search 인풋 태그에 변화가 생길때
         setInputText(e.target.value);
     };
 
-    const handleOnKeyPress = e => { // input search에서 클릭 했을 때에 함수
+    const handleOnKeyPress = (e: React.KeyboardEvent) => { // input search에서 클릭 했을 때에 함수
         if (e.key === 'Enter') {
             getMusicList(); // Enter 입력이 되면 클릭 이벤트 실행
         };
@@ -41,7 +43,7 @@ function Search() {
     };
 
     const truncate = useMemo(() => { // 곡제목, 가수명 길면 자르는 함수
-        return (str, n) => {
+        return (str: string, n: number) => {
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
         };
     }, []);
@@ -58,7 +60,7 @@ function Search() {
 
             {loading ? ( // 로딩 중일 때 로딩 스피너 표시
                 <div style={{display:"flex", justifyContent:"center", marginTop:"100px"}}>
-                    <FadeLoader color="#2E2EFE" loading={loading} size={50}/>
+                    <FadeLoader color="#2E2EFE" loading={loading} />
                 </div>
             ) : searchList.length === 0 && searchAttempted ? (
                 <div style={{display:"flex", justifyContent:"center", marginTop:"100px"}}>

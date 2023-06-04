@@ -1,17 +1,25 @@
-import { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import AddBtn from "./AddBtn";
 import { Link } from "react-router-dom";
 
-function SongList(props) {
-    const [songList, setSongList] = useState([]);
-    const userId = props.id; // 현재 노래 목록 아이디 (다른 유저 노래 목록 보면 바뀜)
-    const loginId = JSON.parse(sessionStorage.getItem("userInfo")).id; // 로그인한 아이디
-    const name = props.name; // 이름
+interface SongListProps {
+    id: string;
+    name: string;
+}
+
+type SongList = {popular_rank: number, name: string, artist: string};
+
+function SongList(props: SongListProps) {
+    
+    const [songList, setSongList] = useState<SongList[]>([]);
+    const userID: string = props.id; // 현재 노래 목록 아이디 (다른 유저 노래 목록 보면 바뀜)
+    const loginID: string = JSON.parse(sessionStorage.getItem("userInfo")!).id; // 로그인한 아이디
+    const name: string = props.name; // 이름
 
     function getSongList() {
         axios.post("http://localhost:3001/song/songList", {  // 처음 페이지 로드 될 때 사용자의 음악 가져오기
-        id : userId,
+        id : userID,
         }).then((res) => {
             setSongList(res.data);
         });
@@ -21,10 +29,10 @@ function SongList(props) {
         getSongList();
     }, []);
 
-    function onClickDelBtn(name, artist) { // 삭제 버튼을 눌렀을 때
+    function onClickDelBtn(name: string, artist: string) { // 삭제 버튼을 눌렀을 때
         if(window.confirm(name + " 정말로 삭제하시겠습니까?")) {
             axios.post("http://localhost:3001/song/delSong", { // addSong 서버 api 호출
-                id : userId, // 현재 세션에 있는 id (로그인한 id)
+                id : userID, // 현재 세션에 있는 id (로그인한 id)
                 name : name, // 노래명
                 artist : artist, // 가수명
             }).then((res) => { // 서버에서 res 가져옴
@@ -41,7 +49,7 @@ function SongList(props) {
     };
 
     const truncate = useMemo(() => {
-        return (str, n) => {
+        return (str: string, n: number) => {
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
         };
     }, []);
@@ -72,7 +80,7 @@ function SongList(props) {
                                             <td>{truncate(item.artist, 20)}</td>
                                         
                                         <td>
-                                            {userId === loginId ? 
+                                            {userID === loginID ? 
                                                 <button className="delSongBtn" onClick={() => onClickDelBtn(item.name, item.artist)}>X</button> : 
                                                 <AddBtn name = {item.name} artist = {item.artist}></AddBtn>}
                                         </td>

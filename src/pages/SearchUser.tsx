@@ -1,21 +1,23 @@
 import Menu from "../components/Menu";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import FollowBtn from "../components/FollowBtn";
 import { Link } from "react-router-dom";
 import '../css/searchUser.css';
 import search from '../img/search.png';
 
+type SearchList = {id: string, name: string};
+
 function SearchUser() {
-    const [inputText, setInputText] = useState('');
-    const [searchList, setSearchList] = useState([]);
-    const id = JSON.parse(sessionStorage.getItem("userInfo")).id;
+    const [inputText, setInputText] = useState<string>('');
+    const [searchList, setSearchList] = useState<SearchList[]>([]);
+    const id: string = JSON.parse(sessionStorage.getItem("userInfo")!).id;
     
-    function onChangeSearch(e) { // Search 인풋 태그에 변화가 생길때
+    function onChangeSearch(e: ChangeEvent<HTMLInputElement>) { // Search 인풋 태그에 변화가 생길때
         setInputText(e.target.value);
     };
 
-    const handleOnKeyPress = e => { // input search에서 클릭 했을 때에 함수
+    const handleOnKeyPress = (e: React.KeyboardEvent) => { // input search에서 클릭 했을 때에 함수
         if (e.key === 'Enter') {
             getUserList(); // Enter 입력이 되면 클릭 이벤트 실행
         };
@@ -57,7 +59,7 @@ function SearchUser() {
                                     {item.name} 
                                 </Link>
                             </td>
-                            <td><FollowBtn toId = {item.id} fromId = {id}/></td>
+                            <td><FollowBtn toID = {item.id} fromID = {id}/></td>
                         </tr>
                     )
                 })}

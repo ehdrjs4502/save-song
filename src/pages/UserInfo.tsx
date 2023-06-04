@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Menu from "../components/Menu";
 import axios from "axios";
 import '../css/info.css'
 import SongList from "../components/SongList";
 
-function UserInfo({match}) {
+type ListType = {to_user: string, name: string}
+
+function UserInfo({match}: {match: string}) {
     const { id } = useParams(); // UserInfo/id -> id 값을 저장
-    const [followList, setFollowList] = useState([]); // 팔로우
-    const [followerList, setFollowerList] = useState([]); // 팔로워
-    const [name, setName] = useState('');
+    const [followList, setFollowList] = useState<ListType[]>([]); // 팔로우
+    const [followerList, setFollowerList] = useState<ListType[]>([]); // 팔로워
+    const [name, setName] = useState<string>('');
     useEffect(() => {
         axios.post("http://localhost:3001/user/userName", { // 이름 불러오기
             id : id,
@@ -23,7 +25,7 @@ function UserInfo({match}) {
             setFollowList(res.data);
         });
 
-        axios.post("http://localhost:3001/follow/followerList", { // 팔로우 리스트 가져오기
+        axios.post("http://localhost:3001/follow/followerList", { // 팔로워 리스트 가져오기
             id : id,
         }).then((res) => {
             setFollowerList(res.data);
@@ -42,7 +44,7 @@ function UserInfo({match}) {
                         <span>팔로우 : {followList.length}</span>
                     </div>
                 </div>
-                <SongList id = {id} name = {name}></SongList>
+                <SongList id = {id!} name = {name}></SongList>
             </div>
         </div>
     )

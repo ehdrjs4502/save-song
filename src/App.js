@@ -1,12 +1,12 @@
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
-import Main from './pages/Main';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MyInfo from './pages/MyInfo';
 import Search from './pages/Search';
 import SearchUser from './pages/SearchUser';
 import UserInfo from './pages/UserInfo';
 import Song from './pages/Song';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import Main from './pages/Main';
 
 
 function App() {

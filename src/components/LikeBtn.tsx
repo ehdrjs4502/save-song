@@ -2,9 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/likeBtn.css";
 
-function LikeBtn({ songTitle, songArtist, userID }) {
-    const [liked, setLiked] = useState(false);
-    const [likeCount, setLikeCount] = useState(0);
+interface LikeBtnProps {
+    songTitle: string;
+    songArtist: string;
+    userID: string;
+}
+
+function LikeBtn({ songTitle, songArtist, userID }: LikeBtnProps) {
+    const [liked, setLiked] = useState<boolean>(false);
+    const [likeCount, setLikeCount] = useState<number>(0);
 
     useEffect(() => {
         // 노래의 좋아요 정보를 가져오는 함수

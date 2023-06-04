@@ -1,11 +1,12 @@
+import React from 'react';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import mic from '../img/mic.png';
 import "../css/menu.css";
 
 function Menu() {
     const navigate = useNavigate();
-    const pathName = useLocation().pathname;
-    const userName = JSON.parse(sessionStorage.getItem("userInfo")).name;
+    const pathName: string = useLocation().pathname;
+    const userName: string = JSON.parse(sessionStorage.getItem("userInfo")!).name;
 
     const selected = {
         color : 'white', 

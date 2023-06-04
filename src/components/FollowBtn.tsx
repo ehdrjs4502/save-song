@@ -1,21 +1,26 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import React from 'react';
 import '../css/followBtn.css';
 
-function FollowBtn(props) {
-    const [isFollowing, setIsFollowing] = useState(false);
-    const toId = props.toId; // 팔로우할 아이디
-    const fromId = props.fromId; // 내 아이디
+interface FollowBtnProps {
+    toID: string;
+    fromID: string;
+}
+
+function FollowBtn(props: FollowBtnProps) {
+    const [isFollowing, setIsFollowing] = useState<boolean>(false);
+    const { toID, fromID } = props;
     
     useEffect(() => {
         chkFollow();
-    }, [toId, fromId]);
+    }, [toID, fromID]);
 
     function chkFollow() {
+        console.log("fromID : ",fromID);
         axios.post("http://localhost:3001/follow/isFollow", {
-            fromUser : fromId,
-            toUser : toId,
+            fromUser : fromID,
+            toUser : toID,
+
         }).then((res) => {
             if(res.data.length === 0) {
                 setIsFollowing(false);
@@ -30,8 +35,8 @@ function FollowBtn(props) {
     function onClickFollowBtn() {
         if(isFollowing) { // 팔로우 돼있으면 언팔로우
             axios.post("http://localhost:3001/follow/unFollow", {
-                fromUser : fromId,
-                toUser : toId,
+                fromUser : fromID,
+                toUser : toID,
             }).then((res) => { // 서버에서 res 가져옴
                 if(res.data.affectedRows === 1) { // 잘 됐으면
                     setIsFollowing(false);
@@ -42,8 +47,8 @@ function FollowBtn(props) {
 
         } else { // 팔로우 안돼있으면 팔로우
             axios.post("http://localhost:3001/follow/follow", {
-                fromUser : fromId,
-                toUser : toId,
+                fromUser : fromID,
+                toUser : toID,
             }).then((res) => {
                 console.log("follow => ", res);
     

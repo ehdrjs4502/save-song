@@ -1,36 +1,33 @@
 import axios from "axios";
-import { useRef, useState } from "react";
+import React, { ChangeEvent, useRef, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "../css/signup.css";
 import {Box, TextField, Button} from '@mui/material';
 
 function SignUp() {
     const navigate = useNavigate();
-    const birthdayRef = useRef("");
-    const nameRef = useRef("");
-    const idRef = useRef("");
-    const pwRef = useRef("");
-    const pwCheckRef = useRef("");
+    const birthdayRef = useRef<HTMLInputElement>(null);
+    const nameRef = useRef<HTMLInputElement>(null);
+    const idRef = useRef<HTMLInputElement>(null);
+    const pwRef = useRef<HTMLInputElement>(null);
+    const pwCheckRef = useRef<HTMLInputElement>(null);
     const [gender, setGender] = useState("남");
     const [idCheck, setIdCheck] = useState(true);
     const [checkErr, SetCheckErr] = useState("");
 
-    const [num, setNum] = useState();
+    const [num, setNum] = useState<string>();
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const regex = /^[0-9\b]+$/;
         if (e.target.value === "" || regex.test(e.target.value)) {
             setNum(e.target.value);
         }
-
-        console.log(num);
     };
 
     function checkId() {
         axios.post("http://localhost:3001/signUp/checkId", {
-            id : idRef.current.value,
+            id : idRef.current?.value,
         }).then((res) => {
-            console.log("checkId =>", res.data.tf);
             setIdCheck(res.data.tf)
             if(res.data.tf) {
                 // console.log("사용 가능한 ID입니다",idRef.current.value);
@@ -38,9 +35,8 @@ function SignUp() {
             } 
 
             if(!res.data.tf) {
-                // console.log("중복된 아이디입니다. 다른 ID를 사용해주세요");
-                // SetCheckErr("중복된 아이디입니다. 다른 ID를 사용해주세요");
-                idRef.current.focus();
+
+                idRef.current?.focus();
             }
         }).catch((e) => {
             console.error(e)
@@ -49,47 +45,47 @@ function SignUp() {
 
     //회원가입 버튼 눌렀을 때 동작하는 함수 
     function onClickSignUp() {
-        console.log(idRef.current.value);
+
         const numCheck = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/
-        if (nameRef.current.value === "" || nameRef.current.value === undefined) {
+        if (nameRef.current?.value === "" || nameRef.current?.value === undefined) {
             alert("이름을 입력하세요");
-            nameRef.current.focus();
+            nameRef.current?.focus();
             return false;
         }
 
-        if (idRef.current.value === "" || idRef.current.value === undefined) {
-            alert("아이디를 입력하세요!!!");
-            idRef.current.focus();
+        if (idRef.current?.value === "" || idRef.current?.value === undefined) {
+            alert("아이디를 입력하세요");
+            idRef.current?.focus();
             return false;
         }
 
         if (!idCheck) {
-            alert("아이디 중복을 확인해주세요!!");
+            alert("아이디 중복을 확인해주세요");
             idRef.current.focus();
             return false;
         }
 
-        if (pwRef.current.value === "" || pwRef.current.value === undefined) {
-            alert("패스워드를 입력하세요!!!");
-            pwRef.current.focus();
+        if (pwRef.current?.value === "" || pwRef.current?.value === undefined) {
+            alert("패스워드를 입력하세요");
+            pwRef.current?.focus();
             return false;
         }
 
-        if (pwCheckRef.current.value === "" || pwCheckRef.current.value === undefined) {
-            alert("패스워드 확인을 입력하세요!!!");
-            pwCheckRef.current.focus();
+        if (pwCheckRef.current?.value === "" || pwCheckRef.current?.value === undefined) {
+            alert("패스워드 확인을 입력하세요");
+            pwCheckRef.current?.focus();
             return false;
         }
 
         if (pwRef.current.value !== pwCheckRef.current.value) {
-            alert("비밀번호를 확인해주세요");
+            alert("패스워드가 다릅니다");
             pwRef.current.focus();
             return false;
         }
 
-        if (!numCheck.test(birthdayRef.current.value)) {
+        if (!numCheck.test(birthdayRef.current!.value)) {
             alert("생년월일을 확인해주세요 ex)20001130");
-            birthdayRef.current.focus();
+            birthdayRef.current?.focus();
             return false;
         }
 
@@ -98,7 +94,7 @@ function SignUp() {
             pw : pwRef.current.value,
             name : nameRef.current.value,
             gender : gender,
-            birthday : birthdayRef.current.value,
+            birthday : birthdayRef.current?.value,
         }).then((res) => {
             console.log("signUp =>", res);
             // 로그인 성공여부는 res.data.affectedRows가 0인지 1인지 확인하면 됨
@@ -113,7 +109,7 @@ function SignUp() {
     } 
 
     //성별 클릭했을 때 동작하는 함수
-    const onClickGender = (e) => {
+    const onClickGender = (e: ChangeEvent<HTMLInputElement>) => {
         setGender(e.target.value)
     }
 
@@ -135,7 +131,7 @@ function SignUp() {
                                 <input type="radio" name="gender" id="man" value="남" defaultChecked onChange={onClickGender}/><label htmlFor="man">남자</label>
                                 <input type="radio" name="gender" id="woman" value="여" onChange={onClickGender}/><label htmlFor="woman">여자</label>
                             </div>
-                            <TextField id="outlined-basic" label="BirthDay" helperText="ex)20001130" type="text" variant="outlined" inputRef={birthdayRef} inputProps={{maxLength : 8}} onChange={(e) => handleChange(e)} value={num || ""}/>
+                            <TextField id="outlined-basic" label="BirthDay" helperText="ex)20001130" type="text" variant="outlined" inputRef={birthdayRef} inputProps={{maxLength : 8}} onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)} value={num || ""}/>
                         </div>
                         <Button variant="contained" onClick={onClickSignUp}>회원가입</Button>
                     </Box>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../css/login.css";
 import mic from '../img/mic.png';
@@ -8,25 +8,25 @@ import {TextField, Button, Stack} from '@mui/material';
 
 function Login() {
     const navigate = useNavigate();
-    const idRef = useRef("");
-    const pwRef = useRef("");
+    const idRef = useRef<HTMLInputElement>(null);
+    const pwRef = useRef<HTMLInputElement>(null);
 
-    const handleOnKeyPress = e => { // input search에서 클릭 했을 때에 함수
+    const handleOnKeyPress = (e: React.KeyboardEvent) => { // input search에서 클릭 했을 때에 함수
         if (e.key === 'Enter') {
             onClickLogin(); // Enter 입력이 되면 클릭 이벤트 실행
         };
     };
 
     function onClickLogin() {
-        if (idRef.current.value === "" || idRef.current.value === undefined) {
+        if (!idRef.current?.value) {
             alert("ID를 입력하세요");
-            idRef.current.focus();
+            idRef.current?.focus();
             return false;
         }
 
-        if (pwRef.current.value === "" || pwRef.current.value === undefined) {
+        if (!pwRef.current?.value) {
             alert("비밀번호를 입력하세요");
-            pwRef.current.focus();
+            pwRef.current?.focus();
             return false;
         }
 
@@ -42,9 +42,11 @@ function Login() {
                 // sessionsStorage는 창 닫으면 사라짐, localStorage는 안사라짐
                 navigate("/Main");
               } else {
-                alert("아이디, 패스워드가 정확하지 않습니다.");
-                pwRef.current.value = "";
-                pwRef.current.focus();
+                if (pwRef.current) {
+                    alert("아이디, 패스워드가 정확하지 않습니다.");
+                    pwRef.current.value = "";
+                    pwRef.current.focus();
+                }
               }
         })
     }

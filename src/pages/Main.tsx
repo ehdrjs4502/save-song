@@ -1,7 +1,10 @@
+import React from "react";
 import AgeGroupTop from "../components/AgeGroupTop";
 import Menu from "../components/Menu";
 import PopularChart from "../components/PopularChart";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+
+type UserInfo = {age: number, gender: string}
 
 function Main() {
     if(sessionStorage.getItem("userInfo") == null ) {
@@ -12,7 +15,7 @@ function Main() {
             </div>
         )
     } else {
-        const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+        const userInfo: UserInfo = JSON.parse(sessionStorage.getItem("userInfo")!);
     
         return(
             <div>

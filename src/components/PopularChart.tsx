@@ -1,23 +1,25 @@
 import axios from "axios"
-import { useEffect, useState, useMemo } from "react"
+import React, { useEffect, useState, useMemo } from "react"
 import AddBtn from './AddBtn';
 import '../css/table.css'
 import { Link } from "react-router-dom";
 
+type SongList = {popular_rank: number, name: string, artist: string};
+
 function PopularChart() {
-    const [songList, SetSongList] = useState([])
+    const [songList, SetSongList] = useState<SongList[]>([])
 
     useEffect(() => {
         axios.get("http://localhost:3001/song/getPopularChart") // 인기차트 가져오기
         .then((res) => {
-            const list = res.data;
+            const list: [] = res.data;
             SetSongList(list);
 
         });
     },[]);
 
     const truncate = useMemo(() => {
-        return (str, n) => {
+        return (str: string, n: number) => {
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
         };
     }, []);

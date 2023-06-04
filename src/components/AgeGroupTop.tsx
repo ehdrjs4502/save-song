@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import AddBtn from "./AddBtn";
 import { Link } from "react-router-dom";
 import { Autoplay, } from "swiper";
@@ -11,8 +11,14 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-function AgeGroupTop(props) {
-    const [topList, SetTopList] = useState([]);
+interface AgeGroupTopProps {
+    userAge: number;
+    userGender: string;
+}
+
+function AgeGroupTop(props: AgeGroupTopProps) {
+    type TopList = { name: string; artist: string };
+    const [topList, SetTopList] = useState<TopList[]>([]);
     //.replace(/.$/, '0');
     const ageGroup = props.userAge.toString().replace(/.$/, '0');
     const gender = props.userGender;
@@ -28,7 +34,7 @@ function AgeGroupTop(props) {
     },[]);
 
     const truncate = useMemo(() => {
-        return (str, n) => {
+        return (str: string, n: number) => {
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
         };
     }, []);
@@ -38,7 +44,7 @@ function AgeGroupTop(props) {
         <div style={{float:"right", position:"absolute", right:"5%"}}>
             <div style={{display:"flex", alignItems:"center", fontSize:13}}>
                 <h3>{ageGroup}대 {gender}성 Top 3</h3>
-                <Swiper slidesPerView="1"
+                <Swiper slidesPerView={1}
                             mousewheel={true}
                             direction="vertical"
                             autoplay={{ delay: 1000, disableOnInteraction: false, pauseOnMouseEnter: true }}

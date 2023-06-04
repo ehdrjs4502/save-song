@@ -13,7 +13,11 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors()) //cors 오류 해결, 모든 도메인에서 제한 없이 해당 서버에 요청을 보내고 응답을 받을 수 있다.
+
+app.use(cors({origin : [
+    'http://localhost:3000',
+
+]})) //cors 오류 해결, 해당 서버에 요청을 보내고 응답을 받을 수 있다.
 
 app.set('port', process.env.PORT || 3001); // port : 3001로 서버 구동
 

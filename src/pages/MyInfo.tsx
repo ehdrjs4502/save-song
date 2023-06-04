@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Menu from "../components/Menu";
 import axios from "axios";
 import Modal from 'react-modal';
@@ -7,8 +7,13 @@ import Followers from "../components/Followers";
 import "../css/info.css";
 import SongList from "../components/SongList";
 
+interface ModalStyle {
+    overlay: React.CSSProperties;
+    content: React.CSSProperties;
+}
+
 function MyInfo() {
-    const modalStyle = { // 모달 창 스타일
+    const modalStyle: ModalStyle = { // 모달 창 스타일
         overlay: {
             position: "fixed",
             top: 0,
@@ -33,12 +38,12 @@ function MyInfo() {
         },
     };
 
-    const id = JSON.parse(sessionStorage.getItem("userInfo")).id; // 로그인한 session id
-    const name = JSON.parse(sessionStorage.getItem("userInfo")).name;
-    const [followList, setFollowList] = useState([]); // 팔로우
-    const [followIsOpen, setFollowIsOpen] = useState(false); // 팔로우 눌렀을 때 모달 창 상태
-    const [followerList, setFollowerList] = useState([]); // 팔로워
-    const [followerIsOpen, setFollowerIsOpen]= useState(false); // 팔로워 눌렀을 때 모달 창 상태
+    const id:string = JSON.parse(sessionStorage.getItem("userInfo")!).id; // 로그인한 session id
+    const name:string = JSON.parse(sessionStorage.getItem("userInfo")!).name;
+    const [followList, setFollowList] = useState<[]>([]); // 팔로우
+    const [followIsOpen, setFollowIsOpen] = useState<boolean>(false); // 팔로우 눌렀을 때 모달 창 상태
+    const [followerList, setFollowerList] = useState<[]>([]); // 팔로워
+    const [followerIsOpen, setFollowerIsOpen]= useState<boolean>(false); // 팔로워 눌렀을 때 모달 창 상태
 
     const getFollowList = () => {
         axios.post("http://localhost:3001/follow/followList", { // 팔로우 리스트 가져오기
@@ -79,7 +84,7 @@ function MyInfo() {
 
 
             <Modal style={modalStyle} ariaHideApp={false} isOpen={followIsOpen} onRequestClose={() => setFollowIsOpen(false)}>
-                <Followings followList = {followList} fromId = {id}/>
+                <Followings followList = {followList} fromID = {id}/>
             </Modal>
 
             <Modal style={modalStyle} ariaHideApp={false} isOpen={followerIsOpen} onRequestClose={() => setFollowerIsOpen(false)}>
