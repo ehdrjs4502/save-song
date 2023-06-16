@@ -15,12 +15,11 @@ function FollowBtn(props: FollowBtnProps) {
         chkFollow();
     }, [toID, fromID]);
 
-    function chkFollow() {
+    function chkFollow() { // 팔로우 돼있는지 체크
         console.log("fromID : ",fromID);
         axios.post("http://localhost:3001/follow/isFollow", {
             fromUser : fromID,
             toUser : toID,
-
         }).then((res) => {
             if(res.data.length === 0) {
                 setIsFollowing(false);
@@ -44,7 +43,6 @@ function FollowBtn(props: FollowBtnProps) {
                 alert("오류!!") 
                 };
             });
-
         } else { // 팔로우 안돼있으면 팔로우
             axios.post("http://localhost:3001/follow/follow", {
                 fromUser : fromID,

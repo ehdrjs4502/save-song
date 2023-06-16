@@ -1,3 +1,7 @@
+.wrap {
+    margin-bottom: 35px;
+}
+
 .youtube-box {
     display: flex;
     justify-content: center;

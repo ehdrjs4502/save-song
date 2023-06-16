@@ -5,7 +5,7 @@ const dbconfig   = require('../config/db.js');
 const db = mysql.createConnection(dbconfig); // mysql 내 db 연동
 
 
-router.post('/isFollow', (req, res) => { // 팔로우 하라고 왔을 때
+router.post('/isFollow', (req, res) => { // 팔로우 돼있는지 확인
     const fromUser = req.body.fromUser; // 팔로우 거는 사람
     const toUser = req.body.toUser; // 팔로우 받는 사람
     
@@ -16,7 +16,7 @@ router.post('/isFollow', (req, res) => { // 팔로우 하라고 왔을 때
 
 });
 
-router.post('/unFollow', (req, res) => {
+router.post('/unFollow', (req, res) => { // 언팔로우 하라고 왔을 때
     const fromUser = req.body.fromUser; // 팔로우 거는 사람
     const toUser = req.body.toUser; // 팔로우 받는 사람
 

@@ -4,6 +4,7 @@ import Menu from "../components/Menu";
 import axios from "axios";
 import '../css/info.css'
 import SongList from "../components/SongList";
+import Footer from "components/Footer";
 
 type ListType = {to_user: string, name: string}
 
@@ -35,17 +36,19 @@ function UserInfo({match}: {match: string}) {
 
     return (
         <div>
-            <Menu/>
-            <div className="infoBox">
-                <div className="headerBox">
-                    <div className="header">
-                        <span>{name}</span>
-                        <span>팔로워 : {followerList.length}</span>
-                        <span>팔로우 : {followList.length}</span>
+            <div className="wrap"> 
+                <Menu/>
+                <div className="info-box">
+                    <div className="header-box">
+                        <div className="header">
+                            <span>팔로워 : {followerList.length}</span>
+                            <span>팔로우 : {followList.length}</span>
+                        </div>
                     </div>
+                    <SongList id = {id!} name = {name}></SongList>
                 </div>
-                <SongList id = {id!} name = {name}></SongList>
             </div>
+            <Footer/>
         </div>
     )
 }

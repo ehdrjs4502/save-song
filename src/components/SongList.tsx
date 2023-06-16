@@ -58,7 +58,7 @@ function SongList(props: SongListProps) {
     return(
         <div>
             <div>
-                <h2 className="song-list-title">{name}님의 노래 목록</h2>
+                <h2 className="song-list-title">{name}님의 노래 목록 ({songList.length})</h2>
             </div>
             <div className="song-list-box">
                 {songList.length === 0 ? (<div><h3>노래를 추가해주세요~</h3></div>) : 

@@ -6,6 +6,7 @@ import Followings from "../components/Followings";
 import Followers from "../components/Followers";
 import "../css/info.css";
 import SongList from "../components/SongList";
+import Footer from "components/Footer";
 
 interface ModalStyle {
     overlay: React.CSSProperties;
@@ -69,27 +70,28 @@ function MyInfo() {
 
     return(
         <div>
-            <Menu/>
-            
-            <div className="info-box">
-                <div className="header-box">
-                    <div className="header">
-                        <span>{name}</span>
-                        <span onClick={() => setFollowerIsOpen(true)}>팔로워 : {followerList.length}</span> 
-                        <span onClick={() => setFollowIsOpen(true)}>팔로우 :  {followList.length}</span>
+            <div className="wrap">
+                <Menu/>
+                <div className="info-box">
+                    <div className="header-box">
+                        <div className="header">
+                            <span onClick={() => setFollowerIsOpen(true)}>팔로워 : {followerList.length}</span> 
+                            <span onClick={() => setFollowIsOpen(true)}>팔로우 :  {followList.length}</span>
+                        </div>
                     </div>
+                    <SongList id = {id} name = {name}/>
                 </div>
-                <SongList id = {id} name = {name}/>
+
+
+                <Modal style={modalStyle} ariaHideApp={false} isOpen={followIsOpen} onRequestClose={() => setFollowIsOpen(false)}>
+                    <Followings followList = {followList} fromID = {id}/>
+                </Modal>
+
+                <Modal style={modalStyle} ariaHideApp={false} isOpen={followerIsOpen} onRequestClose={() => setFollowerIsOpen(false)}>
+                    <Followers followerList = {followerList}/>
+                </Modal>
             </div>
-
-
-            <Modal style={modalStyle} ariaHideApp={false} isOpen={followIsOpen} onRequestClose={() => setFollowIsOpen(false)}>
-                <Followings followList = {followList} fromID = {id}/>
-            </Modal>
-
-            <Modal style={modalStyle} ariaHideApp={false} isOpen={followerIsOpen} onRequestClose={() => setFollowerIsOpen(false)}>
-                <Followers followerList = {followerList}/>
-            </Modal>
+            <Footer/>
         </div>
     )
 }

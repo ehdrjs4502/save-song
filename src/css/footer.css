@@ -1,0 +1,35 @@
+.footer-box {
+    margin-top: 60px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; /*수직 정렬*/
+    align-items: center;
+    justify-content: center;
+    background-color: #2d2d2d;
+    color: white;
+}
+
+
+.link-box {
+    margin-top: 20px;
+}
+
+.github-img {
+    width: 32px;
+    height: 32px;
+    margin-right: 20px;
+}
+
+.github-img:hover {
+    cursor: pointer;
+}
+
+.insta-img {
+    width: 32px;
+    height: 32px;
+}
+
+.insta-img:hover {
+    cursor: pointer;
+}

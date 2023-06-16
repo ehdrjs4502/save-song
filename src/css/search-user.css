@@ -1,3 +1,10 @@
+.wrap {
+    height: auto;
+    min-height: 45vh;
+    padding-bottom: 180px;
+}
+
+
 .user-list-box {
     display: flex;
     justify-content: center;

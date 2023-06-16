@@ -16,18 +16,18 @@ function Followers(props: FollowersProps) {
     return(
         <div>
             <div>
-                <div className="headerTitle">
+                <div className="header-title">
                     <h2>팔로워</h2>
                 </div>
                 <hr/>
                 <div>
-                    <table className="followTable">
+                    <table className="follow-table">
                         <thead></thead>
                         <tbody>
                         {followerList.map((item, idx) => {
                             return(
                                 <tr key={idx}>
-                                    <td className="userID">
+                                    <td className="user-id">
                                         <Link to={`/UserInfo/${item.from_user}`}>
                                             {item.from_user}
                                             <br/>

@@ -3,6 +3,7 @@ import AgeGroupTop from "../components/AgeGroupTop";
 import Menu from "../components/Menu";
 import PopularChart from "../components/PopularChart";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Footer from "components/Footer";
 
 type UserInfo = {age: number, gender: string}
 
@@ -22,6 +23,7 @@ function Main() {
                 <Menu/>
                 <AgeGroupTop userAge = {userInfo.age} userGender = {userInfo.gender} />
                 <PopularChart/>
+                <Footer/>
             </div>
         )
     }

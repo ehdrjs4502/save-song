@@ -6,6 +6,7 @@ import '../css/search.css';
 import search from '../img/search.png';
 import { Link } from "react-router-dom";
 import { FadeLoader } from 'react-spinners';
+import Footer from "components/Footer";
 
 type SearchList = {name: string, artist: string};
 
@@ -34,10 +35,8 @@ function Search() {
         .then((res) => {
             setSearchList(searchList => []); // searchList를 비워준다.
             const trackList = res.data.results.trackmatches.track; // api에서 가져온 노래 리스트 객체 저장
-            console.log(trackList);
             setSearchList(trackList); // searchList에 저장
-        })
-        .finally(() => {
+        }).finally(() => {
             setLoading(false); // 로딩 상태 해제
         });
     };
@@ -50,56 +49,59 @@ function Search() {
 
     return(
         <div>
-            <div><Menu/></div>
-            <div className="search-box">
-                <div className="search-form">
-                    <input type="search" className="search-input" placeholder="노래명 또는 가수명 입력" onKeyPress={handleOnKeyPress} onChange={onChangeSearch}/> 
-                    <button type="button" className="search-btn" onClick={getMusicList}><img className="search-img" alt="searchImg" src={search}/></button>
-                </div>
-            </div> 
-
-            {loading ? ( // 로딩 중일 때 로딩 스피너 표시
-                <div className="loading-box">
-                    <FadeLoader color="#2E2EFE" loading={loading} />
-                </div>
-            ) : searchList.length === 0 && searchAttempted ? (
-                <div className="loading-box">
-                    <h3>검색 결과가 없습니다...</h3>
-                </div>
-            ) : searchList.length > 0 ? (
-                <div className="list-box">
-                    <div>
-                        <table className="search-table">
-                            <thead>
-                                <tr>
-                                    <th>곡제목</th>
-                                    <th>가수명</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {searchList.map((item, idx) => {
-                                return (
-                                    <tr key={idx    }>
-                                        <td>
-                                            <Link to={`/Song/${item.name.replace(/ /g, '')} ${item.artist.replace(/ /g, '')}`}>
-                                                {truncate(item.name, 30)}
-                                            </Link>
-                                        </td>
-                                        <td>
-                                            {truncate(item.artist, 20)}
-                                        </td>
-                                        <td>
-                                            <AddBtn name={item.name} artist={item.artist} />
-                                        </td>
-                                    </tr>   
-                                )
-                            })}
-                            </tbody>
-                        </table>
+            <div className="wrap">
+                <div><Menu/></div>
+                <div className="search-box">
+                    <div className="search-form">
+                        <input type="search" className="search-input" placeholder="노래명 또는 가수명 입력" onKeyPress={handleOnKeyPress} onChange={onChangeSearch}/> 
+                        <button type="button" className="search-btn" onClick={getMusicList}><img className="search-img" alt="searchImg" src={search}/></button>
                     </div>
-                </div>
-            ) : null}
+                </div> 
+
+                {loading ? ( // 로딩 중일 때 로딩 스피너 표시
+                    <div className="loading-box">
+                        <FadeLoader color="#2E2EFE" loading={loading} />
+                    </div>
+                ) : searchList.length === 0 && searchAttempted ? (
+                    <div className="loading-box">
+                        <h3>검색 결과가 없습니다...</h3>
+                    </div>
+                ) : searchList.length > 0 ? (
+                    <div className="list-box">
+                        <div>
+                            <table className="search-table">
+                                <thead>
+                                    <tr>
+                                        <th>곡제목</th>
+                                        <th>가수명</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {searchList.map((item, idx) => {
+                                    return (
+                                        <tr key={idx    }>
+                                            <td>
+                                                <Link to={`/Song/${item.name.replace(/ /g, '')} ${item.artist.replace(/ /g, '')}`}>
+                                                    {truncate(item.name, 30)}
+                                                </Link>
+                                            </td>
+                                            <td>
+                                                {truncate(item.artist, 20)}
+                                            </td>
+                                            <td>
+                                                <AddBtn name={item.name} artist={item.artist} />
+                                            </td>
+                                        </tr>   
+                                    )
+                                })}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                ) : null}
+            </div>
+            <Footer/>
         </div>
     );
 }

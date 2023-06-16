@@ -26,7 +26,7 @@ function AgeGroupTop(props: AgeGroupTopProps) {
 
     useEffect(() => {
         axios.post("http://localhost:3001/song/getTopSongList", { // 성별,연령대 Top3 가져오기
-            age : ageGroup, 
+            age : ageGroup,
             gender : gender,
         }).then((res) => {
             const list = res.data;
