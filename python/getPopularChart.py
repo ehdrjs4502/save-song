@@ -17,7 +17,7 @@ driver.get("https://www.tjmedia.com/tjsong/song_monthPopular.asp") # tj 인기�
 time.sleep(2)
 
 driver.find_element(By.CLASS_NAME,"btn").click()
-
+    
 time.sleep(1)
 
 table = driver.find_element(By.CLASS_NAME,"board_type1")
@@ -41,7 +41,7 @@ for tr in trs:
 
 time.sleep(5)
 
-conn = pymysql.connect(host='127.0.0.1', user='root', password='1234', db='music', charset='utf8')
+conn = pymysql.connect(host='127.0.0.1', user='root', password='', db='music', charset='utf8')
 
 cursor = conn.cursor()
 
