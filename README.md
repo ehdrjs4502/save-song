@@ -16,7 +16,7 @@ React.js + Node.js를 활용한 웹사이트
 
 
 ## 🛠사용 기술
-![React.js](https://img.shields.io/badge/next.js-%23323330.svg?style=for-the-badge&logo=next.js&logoColor=#61DAFB)
+![React.js](https://img.shields.io/badge/react-%23323330.svg?style=for-the-badge&logo=react&logoColor=#61DAFB)
 ![typescript](https://img.shields.io/badge/typescript-%23323330.svg?style=for-the-badge&logo=typescript&logoColor=#3178C6)
 ![Node.js](https://img.shields.io/badge/node.js-%23323330.svg?style=for-the-badge&logo=nodedotjs&logoColor=#339933)
 ![MySQL](https://img.shields.io/badge/mysql-%23323330.svg?style=for-the-badge&logo=mysql&logoColor=#4479A1)
